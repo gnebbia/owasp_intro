@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Implement Security HTTP Headers to Prevent Vulnerabilities?</title>
+
+<script type="text/javascript" async="" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/essb-core.js"></script><script type="text/javascript" async="" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/analytics.js"></script><script src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/5gWfQC_1HGsfYKJ3eugz5QYNfUQ.js"></script><style>[href^="http://www.faceporn.net/free?"],
+[href^="http://www.linkbucks.com/referral/"]
+{display:none !important;}</style><script src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/js.js"></script><link rel="canonical" href="https://geekflare.com/http-header-implementation/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Implement Security HTTP Headers to Prevent Vulnerabilities?">
+<meta property="og:description" content="Do you know most the security vulnerabilities can be fixed by implementing necessary headers in the response header? Security is as important as content and SEO of your website, and thousands of website get hacked due to misconfiguration or lack of protection. If you are a website owner or security engineer and looking to protect …">
+<meta property="og:url" content="https://geekflare.com/http-header-implementation/">
+<meta property="og:site_name" content="Geekflare">
+<meta property="article:publisher" content="https://www.facebook.com/geekflare">
+<meta property="article:section" content="Security">
+<meta property="article:published_time" content="2016-10-01T11:57:12+00:00">
+<meta property="article:modified_time" content="2018-12-24T19:24:22+00:00">
+<meta property="og:updated_time" content="2018-12-24T19:24:22+00:00">
+<meta property="og:image" content="https://geekflare.com/wp-content/uploads/2016/10/header-security.png">
+<meta property="og:image:secure_url" content="https://geekflare.com/wp-content/uploads/2016/10/header-security.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="385">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Do you know most the security vulnerabilities can be fixed by implementing necessary headers in the response header? Security is as important as content and SEO of your website, and thousands of website get hacked due to misconfiguration or lack of protection. If you are a website owner or security engineer and looking to protect […]">
+<meta name="twitter:title" content="How to Implement Security HTTP Headers to Prevent Vulnerabilities?">
+<meta name="twitter:site" content="@GeekflareHQ">
+<meta name="twitter:image" content="https://geekflare.com/wp-content/uploads/2016/10/header-security.png">
+<meta name="twitter:creator" content="@ConnectCK">
+<script type="application/ld+json" class="yoast-schema-graph yoast-schema-graph--main">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://geekflare.com/#organization","name":"Geekflare","url":"https://geekflare.com/","sameAs":["https://www.facebook.com/geekflare","https://www.linkedin.com/in/chandank/","https://twitter.com/GeekflareHQ"],"logo":{"@type":"ImageObject","@id":"https://geekflare.com/#logo","url":"https://geekflare.com/wp-content/uploads/2017/11/Geek-Flare-Logo.png","width":598,"height":160,"caption":"Geekflare"},"image":{"@id":"https://geekflare.com/#logo"}},{"@type":"WebSite","@id":"https://geekflare.com/#website","url":"https://geekflare.com/","name":"Geekflare","publisher":{"@id":"https://geekflare.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://geekflare.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://geekflare.com/http-header-implementation/#primaryimage","url":"https://geekflare.com/wp-content/uploads/2016/10/header-security.png","width":1200,"height":385},{"@type":"WebPage","@id":"https://geekflare.com/http-header-implementation/#webpage","url":"https://geekflare.com/http-header-implementation/","inLanguage":"en-US","name":"How to Implement Security HTTP Headers to Prevent Vulnerabilities?","isPartOf":{"@id":"https://geekflare.com/#website"},"primaryImageOfPage":{"@id":"https://geekflare.com/http-header-implementation/#primaryimage"},"datePublished":"2016-10-01T11:57:12+00:00","dateModified":"2018-12-24T19:24:22+00:00"},{"@type":"Article","@id":"https://geekflare.com/http-header-implementation/#article","isPartOf":{"@id":"https://geekflare.com/http-header-implementation/#webpage"},"author":{"@id":"https://geekflare.com/author/chandan/#author"},"headline":"How to Implement Security HTTP Headers to Prevent Vulnerabilities?","datePublished":"2016-10-01T11:57:12+00:00","dateModified":"2018-12-24T19:24:22+00:00","commentCount":"3","mainEntityOfPage":{"@id":"https://geekflare.com/http-header-implementation/#webpage"},"publisher":{"@id":"https://geekflare.com/#organization"},"image":{"@id":"https://geekflare.com/http-header-implementation/#primaryimage"},"articleSection":"Security"},{"@type":["Person"],"@id":"https://geekflare.com/author/chandan/#author","name":"Chandan Kumar","image":{"@type":"ImageObject","@id":"https://geekflare.com/#authorlogo","url":"https://geekflare.com/wp-content/uploads/2018/05/Chandan-96x96.png","caption":"Chandan Kumar"},"description":"Since founded Geekflare, I've helped millions of professional through my articles and tools.\r\nLet's connect on <a href=\"https://twitter.com/ConnectCK\">Twitter</a> or <a href=\"https://www.linkedin.com/in/chandank/\">LinkedIn</a>.","sameAs":["https://twitter.com/ConnectCK"]}]}</script>
+
+<link rel="amphtml" href="https://geekflare.com/http-header-implementation/amp/"><meta name="generator" content="AMP for WP 0.9.97.61"><link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Geekflare » Feed" href="https://geekflare.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Geekflare » Comments Feed" href="https://geekflare.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Geekflare » How to Implement Security HTTP Headers to Prevent Vulnerabilities? Comments Feed" href="https://geekflare.com/http-header-implementation/feed/">
+<link rel="stylesheet" id="atomic-blocks-fontawesome-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/all.css" type="text/css" media="all">
+<link rel="stylesheet" id="geekflare-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/style_003.css" type="text/css" media="all">
+<style id="geekflare-inline-css" type="text/css">
+
+		.single .content .entry-content > p:first-of-type {
+			color: #111111;
+			font-size: 28px;
+			font-style: italic;
+			line-height: 1.7;
+			margin: 0 0 35px;
+		}
+		
+		a,
+		h4,
+		h5,
+		button,
+		input[type="button"],
+		input[type="reset"],
+		input[type="submit"],		
+		.authority-subtitle,
+		.button,
+		.genesis-nav-menu .highlight a,
+		.more-link,
+		.entry-title a:focus,
+		.entry-title a:hover,
+		.genesis-nav-menu a:focus,
+		.genesis-nav-menu a:hover,
+		.genesis-nav-menu .current-menu-item > a,
+		.genesis-nav-menu .sub-menu .current-menu-item > a:focus,
+		.genesis-nav-menu .sub-menu .current-menu-item > a:hover,
+		.genesis-responsive-menu .genesis-nav-menu a:focus,
+		.genesis-responsive-menu .genesis-nav-menu a:hover,
+		.menu-toggle:focus,
+		.menu-toggle:hover,
+		.site-container div.wpforms-container-full .wpforms-form input[type="submit"],
+		.site-container div.wpforms-container-full .wpforms-form button[type="submit"],
+		.sub-menu-toggle:focus,
+		.sub-menu-toggle:hover {
+			color: #ff4e00;
+		}
+
+		button,
+		input[type="button"],
+		input[type="reset"],
+		input[type="submit"],
+		.button,
+		.genesis-nav-menu .highlight a,
+		.more-link,
+		.site-container div.wpforms-container-full .wpforms-form input[type="submit"],
+		.site-container div.wpforms-container-full .wpforms-form button[type="submit"] {
+			border-color: #ff4e00;
+		}
+
+		.enews-widget::after,
+		.sidebar .enews-widget:nth-child(2n+1)::after {
+			background: #ff4e00;
+		}
+
+		button.primary,
+		input[type="button"].primary,
+		input[type="reset"].primary,
+		input[type="submit"].primary,
+		.authority-top-banner,
+		.button.primary,
+		.more-link,
+		.sidebar .enews-widget input[type="submit"],
+		.enews-widget input[type="submit"] {
+			background-color: #ff4e00;
+			color: #ffffff;
+		}
+
+		.authority-top-banner a,
+		.authority-top-banner a:focus,
+		.authority-top-banner a:hover,
+		#authority-top-banner-close,
+		#authority-top-banner-close:focus,
+		#authority-top-banner-close:hover {
+			color: #ffffff;
+		}
+
+		.archive-pagination .pagination-next > a,
+		.archive-pagination .pagination-previous > a,
+		.menu-toggle,
+		.sub-menu-toggle {
+			border-color: #ff4e00;
+			color: #ff4e00;
+		}
+
+		a.button:focus,
+		a.button:hover,
+		button:focus,
+		button:hover,
+		input[type="button"]:focus,
+		input[type="button"]:hover,
+		input[type="reset"]:focus,
+		input[type="reset"]:hover,
+		input[type="submit"]:focus,
+		input[type="submit"]:hover,
+		.archive-pagination li a:focus,
+		.archive-pagination li a:hover,
+		.archive-pagination .active a,
+		.archive-pagination .pagination-next > a:focus,
+		.archive-pagination .pagination-next > a:hover,
+		.archive-pagination .pagination-previous > a:focus,
+		.archive-pagination .pagination-previous > a:hover,
+		.button:focus,
+		.button:hover,
+		.enews-widget input[type="submit"]:focus,
+		.enews-widget input[type="submit"]:hover,
+		.genesis-nav-menu .highlight a:focus,
+		.genesis-nav-menu .highlight a:hover,
+		.menu-toggle:focus,
+		.menu-toggle:hover,
+		.more-link:focus,
+		.more-link:hover,
+		.sidebar .enews-widget input[type="submit"]:focus,
+		.sidebar .enews-widget input[type="submit"]:hover,
+		.site-container div.wpforms-container-full .wpforms-form input[type="submit"]:focus,
+		.site-container div.wpforms-container-full .wpforms-form input[type="submit"]:hover,
+		.site-container div.wpforms-container-full .wpforms-form button[type="submit"]:focus,
+		.site-container div.wpforms-container-full .wpforms-form button[type="submit"]:hover,
+		.sub-menu-toggle:focus,
+		.sub-menu-toggle:hover {
+			background-color: #ff6214;
+			border-color: #ff6214;
+			color: #ffffff;
+		}
+		
+</style>
+<link rel="stylesheet" id="wp-block-library-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/style_002.css" type="text/css" media="all">
+<link rel="stylesheet" id="atomic-blocks-style-css-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/blocks.css" type="text/css" media="all">
+<link rel="stylesheet" id="tve_style_family_tve_flt-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/thrive_flat.css" type="text/css" media="all">
+<link rel="stylesheet" id="tve_leads_forms-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/frontend.css" type="text/css" media="all">
+<link rel="stylesheet" id="megamenu-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/dashicons.css" type="text/css" media="all">
+<link rel="stylesheet" id="geekflare-gutenberg-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/front-end.css" type="text/css" media="all">
+<style id="geekflare-gutenberg-inline-css" type="text/css">
+.ab-block-post-grid a.ab-block-post-grid-more-link,
+.ab-block-post-grid .ab-post-grid-items .ab-block-post-grid-title a:focus,
+.ab-block-post-grid .ab-post-grid-items .ab-block-post-grid-title a:hover,
+.wp-block-image.vertical-caption figcaption a:focus,
+.wp-block-image.vertical-caption figcaption a:hover {
+	color: #ff4e00;
+}
+
+.site-container .ab-button,
+.site-container .ab-newsletter-submit,
+.site-container .ab-newsletter-submit:hover,
+.site-container .wp-block-button .wp-block-button__link,
+.wp-block-media-text .wp-block-media-text__media::after,
+.wp-block-image.stylized-background::after {
+	background-color: #ff4e00;
+}
+
+.site-container .ab-button,
+.wp-block-button .wp-block-button__link:not(.has-background),
+.wp-block-button .wp-block-button__link:not(.has-background):focus,
+.wp-block-button .wp-block-button__link:not(.has-background):hover {
+	color: #ffffff;
+}
+
+.site-container .wp-block-button.is-style-outline .wp-block-button__link {
+	color: #ff4e00;
+}
+
+.site-container .wp-block-button.is-style-outline .wp-block-button__link:focus,
+.site-container .wp-block-button.is-style-outline .wp-block-button__link:hover {
+	color: #ff7123;
+}		.site-container .has-small-font-size {
+			font-size: 12px;
+		}		.site-container .has-normal-font-size {
+			font-size: 16px;
+		}		.site-container .has-large-font-size {
+			font-size: 20px;
+		}		.site-container .has-larger-font-size {
+			font-size: 24px;
+		}		.site-container .has-theme-primary-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-primary-color,
+		.site-container .wp-block-button.is-style-outline .wp-block-button__link.has-theme-primary-color {
+			color: #ff4e00;
+		}
+
+		.site-container .has-theme-primary-background-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-primary-background-color,
+		.site-container .wp-block-pullquote.is-style-solid-color.has-theme-primary-background-color {
+			background-color: #ff4e00;
+		}
+</style>
+<link rel="stylesheet" id="easy-social-share-buttons-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/easy-social-share-buttons.css" type="text/css" media="all">
+<link rel="stylesheet" id="easy-social-share-buttons-display-methods-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/essb-display-methods.css" type="text/css" media="all">
+<link rel="stylesheet" id="algolia-autocomplete-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/algolia-autocomplete.css" type="text/css" media="screen">
+<link rel="stylesheet" id="prism-theme-css" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/prism-css.css" type="text/css" media="all">
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/jquery.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/jquery-migrate.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/underscore.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/wp-util.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/algoliasearch.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/autocomplete.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/autocomplete-noconflict.js"></script>
+<link rel="https://api.w.org/" href="https://geekflare.com/wp-json/">
+<link rel="alternate" type="application/json+oembed" href="https://geekflare.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgeekflare.com%2Fhttp-header-implementation%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://geekflare.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgeekflare.com%2Fhttp-header-implementation%2F&amp;format=xml">
+<style type="text/css" id="tve_global_variables">:root{}</style>
+<script type="text/javascript">var essb_settings = {"ajax_url":"https:\/\/geekflare.com\/wp-admin\/admin-ajax.php","essb3_nonce":"58b9971a97","essb3_plugin_url":"https:\/\/geekflare.com\/wp-content\/plugins\/easy-social-share-buttons3","essb3_stats":false,"essb3_ga":false,"essb3_ga_mode":"simple","blog_url":"https:\/\/geekflare.com\/","essb3_postfloat_stay":false,"post_id":15016};</script> <meta name="onesignal" content="wordpress-plugin">
+<link rel="manifest" href="https://geekflare.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/manifest.json.php?gcm_sender_id=370103021612">
+<script async="" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/OneSignalSDK.js" type="text/javascript"></script> <script type="text/javascript">
+
+      window.OneSignal = window.OneSignal || [];
+
+      OneSignal.push( function() {
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = "OneSignalSDKUpdaterWorker.js.php";
+        OneSignal.SERVICE_WORKER_PATH = "OneSignalSDKWorker.js.php";
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/' };
+
+        OneSignal.setDefaultNotificationUrl("https://geekflare.com");
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = '61d4ff78-0a91-40bb-8a91-ae3e128d705e';
+oneSignal_options['autoRegister'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['disable'] = true;
+oneSignal_options['path'] = "https://geekflare.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['safari_web_id'] = "web.onesignal.auto.11181d92-f3cb-414e-9b3e-6471e643153c";
+oneSignal_options['persistNotification'] = true;
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['notifyButton'] = { };
+oneSignal_options['notifyButton']['enable'] = true;
+oneSignal_options['notifyButton']['position'] = 'bottom-left';
+oneSignal_options['notifyButton']['theme'] = 'inverse';
+oneSignal_options['notifyButton']['size'] = 'small';
+oneSignal_options['notifyButton']['prenotify'] = true;
+oneSignal_options['notifyButton']['showCredit'] = false;
+              OneSignal.init(window._oneSignalInitOptions);
+                    });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+<script type="text/javascript">var algolia = {"debug":false,"application_id":"WTDH4XUUXG","search_api_key":"a411efbb98f4a0786373162d6d617634","powered_by_enabled":true,"query":"","autocomplete":{"sources":[{"index_id":"searchable_posts","index_name":"wp_searchable_posts","label":"All posts","admin_name":"All posts","position":10,"max_suggestions":5,"tmpl_suggestion":"autocomplete-post-suggestion","enabled":true}],"input_selector":"input[name='s']:not('.no-autocomplete')"},"indices":{"searchable_posts":{"name":"wp_searchable_posts","id":"searchable_posts","enabled":true,"replicas":[]}}};</script><link rel="icon" href="https://geekflare.com/wp-content/uploads/2018/09/cropped-Geekflare-favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="https://geekflare.com/wp-content/uploads/2018/09/cropped-Geekflare-favicon-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://geekflare.com/wp-content/uploads/2018/09/cropped-Geekflare-favicon-180x180.png">
+<meta name="msapplication-TileImage" content="https://geekflare.com/wp-content/uploads/2018/09/cropped-Geekflare-favicon-270x270.png">
+<style type="text/css">/** Mega Menu CSS: fs **/</style>
+<script type="text/html" id="tmpl-autocomplete-header">
+  <div class="autocomplete-header">
+	<div class="autocomplete-header-title">{{{ data.label }}}</div>
+	<div class="clear"></div>
+  </div>
+</script>
+<script type="text/html" id="tmpl-autocomplete-post-suggestion">
+  <a class="suggestion-link" href="{{ data.permalink }}" title="{{ data.post_title }}">
+	<# if ( data.images.thumbnail ) { #>
+	  <img class="suggestion-post-thumbnail" src="{{ data.images.thumbnail.url }}" alt="{{ data.post_title }}">
+	  <# } #>
+		<div class="suggestion-post-attributes">
+		  <span class="suggestion-post-title">{{{ data._highlightResult.post_title.value }}}</span>
+		  <# if ( data._snippetResult['content'] ) { #>
+			<span class="suggestion-post-content">{{{ data._snippetResult['content'].value }}}</span>
+			<# } #>
+		</div>
+  </a>
+</script>
+<script type="text/html" id="tmpl-autocomplete-term-suggestion">
+  <a class="suggestion-link" href="{{ data.permalink }}" title="{{ data.name }}">
+	<svg viewBox="0 0 21 21" width="21" height="21">
+	  <svg width="21" height="21" viewBox="0 0 21 21">
+		<path
+			d="M4.662 8.72l-1.23 1.23c-.682.682-.68 1.792.004 2.477l5.135 5.135c.7.693 1.8.688 2.48.005l1.23-1.23 5.35-5.346c.31-.31.54-.92.51-1.36l-.32-4.29c-.09-1.09-1.05-2.06-2.15-2.14l-4.3-.33c-.43-.03-1.05.2-1.36.51l-.79.8-2.27 2.28-2.28 2.27zm9.826-.98c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25-1.25.56-1.25 1.25.56 1.25 1.25 1.25z"
+			fill-rule="evenodd"></path>
+	  </svg>
+	</svg>
+	<span class="suggestion-post-title">{{{ data._highlightResult.name.value }}}</span>
+  </a>
+</script>
+<script type="text/html" id="tmpl-autocomplete-user-suggestion">
+  <a class="suggestion-link user-suggestion-link" href="{{ data.posts_url }}" title="{{ data.display_name }}">
+	<# if ( data.avatar_url ) { #>
+	  <img class="suggestion-user-thumbnail" src="{{ data.avatar_url }}" alt="{{ data.display_name }}">
+	  <# } #>
+
+		<span class="suggestion-post-title">{{{ data._highlightResult.display_name.value }}}</span>
+  </a>
+</script>
+<script type="text/html" id="tmpl-autocomplete-footer">
+  <div class="autocomplete-footer">
+	<div class="autocomplete-footer-branding">
+	  <a href="#" class="algolia-powered-by-link" title="Algolia">
+		<svg width="130" viewBox="0 0 130 18" xmlns="http://www.w3.org/2000/svg">
+		  <title>Search by Algolia</title>
+		  <defs>
+			<linearGradient x1="-36.868%" y1="134.936%" x2="129.432%" y2="-27.7%" id="a">
+			  <stop stop-color="#00AEFF" offset="0%"/>
+			  <stop stop-color="#3369E7" offset="100%"/>
+			</linearGradient>
+		  </defs>
+		  <g fill="none" fill-rule="evenodd">
+			<path
+				d="M59.399.022h13.299a2.372 2.372 0 0 1 2.377 2.364V15.62a2.372 2.372 0 0 1-2.377 2.364H59.399a2.372 2.372 0 0 1-2.377-2.364V2.381A2.368 2.368 0 0 1 59.399.022z"
+				fill="url(#a)"/>
+			<path
+				d="M66.257 4.56c-2.815 0-5.1 2.272-5.1 5.078 0 2.806 2.284 5.072 5.1 5.072 2.815 0 5.1-2.272 5.1-5.078 0-2.806-2.279-5.072-5.1-5.072zm0 8.652c-1.983 0-3.593-1.602-3.593-3.574 0-1.972 1.61-3.574 3.593-3.574 1.983 0 3.593 1.602 3.593 3.574a3.582 3.582 0 0 1-3.593 3.574zm0-6.418v2.664c0 .076.082.131.153.093l2.377-1.226c.055-.027.071-.093.044-.147a2.96 2.96 0 0 0-2.465-1.487c-.055 0-.11.044-.11.104l.001-.001zm-3.33-1.956l-.312-.311a.783.783 0 0 0-1.106 0l-.372.37a.773.773 0 0 0 0 1.101l.307.305c.049.049.121.038.164-.011.181-.245.378-.479.597-.697.225-.223.455-.42.707-.599.055-.033.06-.109.016-.158h-.001zm5.001-.806v-.616a.781.781 0 0 0-.783-.779h-1.824a.78.78 0 0 0-.783.779v.632c0 .071.066.12.137.104a5.736 5.736 0 0 1 1.588-.223c.52 0 1.035.071 1.534.207a.106.106 0 0 0 .131-.104z"
+				fill="#FFF"/>
+			<path
+				d="M102.162 13.762c0 1.455-.372 2.517-1.123 3.193-.75.676-1.895 1.013-3.44 1.013-.564 0-1.736-.109-2.673-.316l.345-1.689c.783.163 1.819.207 2.361.207.86 0 1.473-.174 1.84-.523.367-.349.548-.866.548-1.553v-.349a6.374 6.374 0 0 1-.838.316 4.151 4.151 0 0 1-1.194.158 4.515 4.515 0 0 1-1.616-.278 3.385 3.385 0 0 1-1.254-.817 3.744 3.744 0 0 1-.811-1.351c-.192-.539-.29-1.504-.29-2.212 0-.665.104-1.498.307-2.054a3.925 3.925 0 0 1 .904-1.433 4.124 4.124 0 0 1 1.441-.926 5.31 5.31 0 0 1 1.945-.365c.696 0 1.337.087 1.961.191a15.86 15.86 0 0 1 1.588.332v8.456h-.001zm-5.954-4.206c0 .893.197 1.885.592 2.299.394.414.904.621 1.528.621.34 0 .663-.049.964-.142a2.75 2.75 0 0 0 .734-.332v-5.29a8.531 8.531 0 0 0-1.413-.18c-.778-.022-1.369.294-1.786.801-.411.507-.619 1.395-.619 2.223zm16.12 0c0 .719-.104 1.264-.318 1.858a4.389 4.389 0 0 1-.904 1.52c-.389.42-.854.746-1.402.975-.548.229-1.391.36-1.813.36-.422-.005-1.26-.125-1.802-.36a4.088 4.088 0 0 1-1.397-.975 4.486 4.486 0 0 1-.909-1.52 5.037 5.037 0 0 1-.329-1.858c0-.719.099-1.411.318-1.999.219-.588.526-1.09.92-1.509.394-.42.865-.741 1.402-.97a4.547 4.547 0 0 1 1.786-.338 4.69 4.69 0 0 1 1.791.338c.548.229 1.019.55 1.402.97.389.42.69.921.909 1.509.23.588.345 1.28.345 1.999h.001zm-2.191.005c0-.921-.203-1.689-.597-2.223-.394-.539-.948-.806-1.654-.806-.707 0-1.26.267-1.654.806-.394.539-.586 1.302-.586 2.223 0 .932.197 1.558.592 2.098.394.545.948.812 1.654.812.707 0 1.26-.272 1.654-.812.394-.545.592-1.166.592-2.098h-.001zm6.962 4.707c-3.511.016-3.511-2.822-3.511-3.274L113.583.926l2.142-.338v10.003c0 .256 0 1.88 1.375 1.885v1.792h-.001zm3.774 0h-2.153V5.072l2.153-.338v9.534zm-1.079-10.542c.718 0 1.304-.578 1.304-1.291 0-.714-.581-1.291-1.304-1.291-.723 0-1.304.578-1.304 1.291 0 .714.586 1.291 1.304 1.291zm6.431 1.013c.707 0 1.304.087 1.786.262.482.174.871.42 1.156.73.285.311.488.735.608 1.182.126.447.186.937.186 1.476v5.481a25.24 25.24 0 0 1-1.495.251c-.668.098-1.419.147-2.251.147a6.829 6.829 0 0 1-1.517-.158 3.213 3.213 0 0 1-1.178-.507 2.455 2.455 0 0 1-.761-.904c-.181-.37-.274-.893-.274-1.438 0-.523.104-.855.307-1.215.208-.36.487-.654.838-.883a3.609 3.609 0 0 1 1.227-.49 7.073 7.073 0 0 1 2.202-.103c.263.027.537.076.833.147v-.349c0-.245-.027-.479-.088-.697a1.486 1.486 0 0 0-.307-.583c-.148-.169-.34-.3-.581-.392a2.536 2.536 0 0 0-.915-.163c-.493 0-.942.06-1.353.131-.411.071-.75.153-1.008.245l-.257-1.749c.268-.093.668-.185 1.183-.278a9.335 9.335 0 0 1 1.66-.142l-.001-.001zm.181 7.731c.657 0 1.145-.038 1.484-.104v-2.168a5.097 5.097 0 0 0-1.978-.104c-.241.033-.46.098-.652.191a1.167 1.167 0 0 0-.466.392c-.121.169-.175.267-.175.523 0 .501.175.79.493.981.323.196.75.289 1.293.289h.001zM84.109 4.794c.707 0 1.304.087 1.786.262.482.174.871.42 1.156.73.29.316.487.735.608 1.182.126.447.186.937.186 1.476v5.481a25.24 25.24 0 0 1-1.495.251c-.668.098-1.419.147-2.251.147a6.829 6.829 0 0 1-1.517-.158 3.213 3.213 0 0 1-1.178-.507 2.455 2.455 0 0 1-.761-.904c-.181-.37-.274-.893-.274-1.438 0-.523.104-.855.307-1.215.208-.36.487-.654.838-.883a3.609 3.609 0 0 1 1.227-.49 7.073 7.073 0 0 1 2.202-.103c.257.027.537.076.833.147v-.349c0-.245-.027-.479-.088-.697a1.486 1.486 0 0 0-.307-.583c-.148-.169-.34-.3-.581-.392a2.536 2.536 0 0 0-.915-.163c-.493 0-.942.06-1.353.131-.411.071-.75.153-1.008.245l-.257-1.749c.268-.093.668-.185 1.183-.278a8.89 8.89 0 0 1 1.66-.142l-.001-.001zm.186 7.736c.657 0 1.145-.038 1.484-.104v-2.168a5.097 5.097 0 0 0-1.978-.104c-.241.033-.46.098-.652.191a1.167 1.167 0 0 0-.466.392c-.121.169-.175.267-.175.523 0 .501.175.79.493.981.318.191.75.289 1.293.289h.001zm8.682 1.738c-3.511.016-3.511-2.822-3.511-3.274L89.461.926l2.142-.338v10.003c0 .256 0 1.88 1.375 1.885v1.792h-.001z"
+				fill="#182359"/>
+			<path
+				d="M5.027 11.025c0 .698-.252 1.246-.757 1.644-.505.397-1.201.596-2.089.596-.888 0-1.615-.138-2.181-.414v-1.214c.358.168.739.301 1.141.397.403.097.778.145 1.125.145.508 0 .884-.097 1.125-.29a.945.945 0 0 0 .363-.779.978.978 0 0 0-.333-.747c-.222-.204-.68-.446-1.375-.725-.716-.29-1.221-.621-1.515-.994-.294-.372-.44-.82-.44-1.343 0-.655.233-1.171.698-1.547.466-.376 1.09-.564 1.875-.564.752 0 1.5.165 2.245.494l-.408 1.047c-.698-.294-1.321-.44-1.869-.44-.415 0-.73.09-.945.271a.89.89 0 0 0-.322.717c0 .204.043.379.129.524.086.145.227.282.424.411.197.129.551.299 1.063.51.577.24.999.464 1.268.671.269.208.466.442.591.704.125.261.188.569.188.924l-.001.002zm3.98 2.24c-.924 0-1.646-.269-2.167-.808-.521-.539-.782-1.281-.782-2.226 0-.97.242-1.733.725-2.288.483-.555 1.148-.833 1.993-.833.784 0 1.404.238 1.858.714.455.476.682 1.132.682 1.966v.682H7.357c.018.577.174 1.02.467 1.329.294.31.707.465 1.241.465.351 0 .678-.033.98-.099a5.1 5.1 0 0 0 .975-.33v1.026a3.865 3.865 0 0 1-.935.312 5.723 5.723 0 0 1-1.08.091l.002-.001zm-.231-5.199c-.401 0-.722.127-.964.381s-.386.625-.432 1.112h2.696c-.007-.491-.125-.862-.354-1.115-.229-.252-.544-.379-.945-.379l-.001.001zm7.692 5.092l-.252-.827h-.043c-.286.362-.575.608-.865.739-.29.131-.662.196-1.117.196-.584 0-1.039-.158-1.367-.473-.328-.315-.491-.761-.491-1.337 0-.612.227-1.074.682-1.386.455-.312 1.148-.482 2.079-.51l1.026-.032v-.317c0-.38-.089-.663-.266-.851-.177-.188-.452-.282-.824-.282-.304 0-.596.045-.876.134a6.68 6.68 0 0 0-.806.317l-.408-.902a4.414 4.414 0 0 1 1.058-.384 4.856 4.856 0 0 1 1.085-.132c.756 0 1.326.165 1.711.494.385.329.577.847.577 1.552v4.002h-.902l-.001-.001zm-1.88-.859c.458 0 .826-.128 1.104-.384.278-.256.416-.615.416-1.077v-.516l-.763.032c-.594.021-1.027.121-1.297.298s-.406.448-.406.814c0 .265.079.47.236.615.158.145.394.218.709.218h.001zm7.557-5.189c.254 0 .464.018.628.054l-.124 1.176a2.383 2.383 0 0 0-.559-.064c-.505 0-.914.165-1.227.494-.313.329-.47.757-.47 1.284v3.105h-1.262V7.218h.988l.167 1.047h.064c.197-.354.454-.636.771-.843a1.83 1.83 0 0 1 1.023-.312h.001zm4.125 6.155c-.899 0-1.582-.262-2.049-.787-.467-.525-.701-1.277-.701-2.259 0-.999.244-1.767.733-2.304.489-.537 1.195-.806 2.119-.806.627 0 1.191.116 1.692.349l-.381 1.015c-.534-.208-.974-.312-1.321-.312-1.028 0-1.542.682-1.542 2.046 0 .666.128 1.166.384 1.501.256.335.631.502 1.125.502a3.23 3.23 0 0 0 1.595-.419v1.101a2.53 2.53 0 0 1-.722.285 4.356 4.356 0 0 1-.932.086v.002zm8.277-.107h-1.268V9.506c0-.458-.092-.8-.277-1.026-.184-.226-.477-.338-.878-.338-.53 0-.919.158-1.168.475-.249.317-.373.848-.373 1.593v2.949h-1.262V4.801h1.262v2.122c0 .34-.021.704-.064 1.09h.081a1.76 1.76 0 0 1 .717-.666c.306-.158.663-.236 1.072-.236 1.439 0 2.159.725 2.159 2.175v3.873l-.001-.001zm7.649-6.048c.741 0 1.319.269 1.732.806.414.537.62 1.291.62 2.261 0 .974-.209 1.732-.628 2.275-.419.542-1.001.814-1.746.814-.752 0-1.336-.27-1.751-.811h-.086l-.231.704h-.945V4.801h1.262v1.987l-.021.655-.032.553h.054c.401-.591.992-.886 1.772-.886zm-.328 1.031c-.508 0-.875.149-1.098.448-.224.299-.339.799-.346 1.501v.086c0 .723.115 1.247.344 1.571.229.324.603.486 1.123.486.448 0 .787-.177 1.018-.532.231-.354.346-.867.346-1.536 0-1.35-.462-2.025-1.386-2.025l-.001.001zm3.244-.924h1.375l1.209 3.368c.183.48.304.931.365 1.354h.043c.032-.197.091-.436.177-.717.086-.281.541-1.616 1.364-4.004h1.364l-2.541 6.73c-.462 1.235-1.232 1.853-2.31 1.853-.279 0-.551-.03-.816-.091v-.999c.19.043.406.064.65.064.609 0 1.037-.353 1.284-1.058l.22-.559-2.385-5.941h.001z"
+				fill="#1D3657"/>
+		  </g>
+		</svg>
+	  </a>
+	</div>
+  </div>
+</script>
+<script type="text/html" id="tmpl-autocomplete-empty">
+  <div class="autocomplete-empty">
+	  No results matched your query 	<span class="empty-query">"{{ data.query }}"</span>
+  </div>
+</script>
+<script type="text/javascript">
+  jQuery(function () {
+	/* init Algolia client */
+	var client = algoliasearch(algolia.application_id, algolia.search_api_key);
+
+	/* setup default sources */
+	var sources = [];
+	jQuery.each(algolia.autocomplete.sources, function (i, config) {
+	  var suggestion_template = wp.template(config['tmpl_suggestion']);
+	  sources.push({
+		source: algoliaAutocomplete.sources.hits(client.initIndex(config['index_name']), {
+		  hitsPerPage: config['max_suggestions'],
+		  attributesToSnippet: [
+			'content:10'
+		  ],
+		  highlightPreTag: '__ais-highlight__',
+		  highlightPostTag: '__/ais-highlight__'
+		}),
+		templates: {
+		  header: function () {
+			return wp.template('autocomplete-header')({
+			  label: _.escape(config['label'])
+			});
+		  },
+		  suggestion: function (hit) {
+      if(hit.escaped === true) {
+        return suggestion_template(hit);
+      }
+      hit.escaped = true;
+
+			for (var key in hit._highlightResult) {
+			  /* We do not deal with arrays. */
+			  if (typeof hit._highlightResult[key].value !== 'string') {
+				continue;
+			  }
+			  hit._highlightResult[key].value = _.escape(hit._highlightResult[key].value);
+			  hit._highlightResult[key].value = hit._highlightResult[key].value.replace(/__ais-highlight__/g, '<em>').replace(/__\/ais-highlight__/g, '</em>');
+			}
+
+			for (var key in hit._snippetResult) {
+			  /* We do not deal with arrays. */
+			  if (typeof hit._snippetResult[key].value !== 'string') {
+				continue;
+			  }
+
+			  hit._snippetResult[key].value = _.escape(hit._snippetResult[key].value);
+			  hit._snippetResult[key].value = hit._snippetResult[key].value.replace(/__ais-highlight__/g, '<em>').replace(/__\/ais-highlight__/g, '</em>');
+			}
+
+			return suggestion_template(hit);
+		  }
+		}
+	  });
+
+	});
+
+	/* Setup dropdown menus */
+	jQuery(algolia.autocomplete.input_selector).each(function (i) {
+	  var $searchInput = jQuery(this);
+
+	  var config = {
+		debug: algolia.debug,
+		hint: false,
+		openOnFocus: true,
+		appendTo: 'body',
+		templates: {
+		  empty: wp.template('autocomplete-empty')
+		}
+	  };
+
+	  if (algolia.powered_by_enabled) {
+		config.templates.footer = wp.template('autocomplete-footer');
+	  }
+
+	  /* Instantiate autocomplete.js */
+	  var autocomplete = algoliaAutocomplete($searchInput[0], config, sources)
+	  .on('autocomplete:selected', function (e, suggestion) {
+		/* Redirect the user when we detect a suggestion selection. */
+		window.location.href = suggestion.permalink;
+	  });
+
+	  /* Force the dropdown to be re-drawn on scroll to handle fixed containers. */
+	  jQuery(window).scroll(function() {
+		if(autocomplete.autocomplete.getWrapper().style.display === "block") {
+		  autocomplete.autocomplete.close();
+		  autocomplete.autocomplete.open();
+		}
+	  });
+	});
+
+	jQuery(document).on("click", ".algolia-powered-by-link", function (e) {
+	  e.preventDefault();
+	  window.location = "https://www.algolia.com/?utm_source=WordPress&utm_medium=extension&utm_content=" + window.location.hostname + "&utm_campaign=poweredby";
+	});
+  });
+</script>
+<script src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/OneSignalPageSDKES6.js" async=""></script></head>
+<body class="post-template-default single single-post postid-15016 single-format-standard wp-custom-logo wp-embed-responsive mega-menu-primary header-image header-full-width full-width-content has-featured-image" style="padding-top: 81px;"><ul class="genesis-skip-link"><li><a href="#genesis-content" class="screen-reader-shortcut"> Skip to content</a></li><li><a href="#footer" class="screen-reader-shortcut"> Skip to footer</a></li></ul><div class="site-container"><h2 id="additional-menu-label" class="screen-reader-text">Additional menu</h2><header class="site-header" style="top: -81px;"><div class="wrap"><div class="title-area"><a href="https://geekflare.com/" class="custom-logo-link" rel="home"><img src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/Geekflare.webp" class="custom-logo" alt="Geekflare" width="548" height="110"></a><p class="site-title">Geekflare</p><p class="site-description">Learn Web Security, Cloud Computing, Development, Sysadmin and Blogging</p></div> <div class="custom-search head-custom-search" style="">
+<form class="search-form" method="get" action="https://geekflare.com/" role="search"><label class="search-form-label screen-reader-text" for="searchform-5d1e19b86e5462.48982208">Search this website</label><input class="search-form-input aa-input" type="search" name="s" id="searchform-5d1e19b86e5462.48982208" placeholder="Search this website" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-labelledby="searchform-5d1e19b86e5462.48982208" aria-owns="algolia-autocomplete-listbox-0" style="" dir="auto"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: geomanist-medium, helvetica neue, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><input class="search-form-submit" type="submit" value="Search"><meta content="https://geekflare.com/?s={s}"></form> </div>
+<div class="header-icons">
+<span class="search-box">
+<a class="search-icon" href="javascript:void(0)">
+<i class="dashicons dashicons-search"></i>
+</a>
+</span>
+</div>
+<button class="menu-toggle dashicons-before dashicons-menu" aria-expanded="false" aria-pressed="false" id="genesis-mobile-nav-primary">Menu</button><nav class="nav-primary genesis-responsive-menu" aria-label="Main" id="genesis-nav-primary" style=""><div class="wrap"><div id="mega-menu-wrap-primary" class="mega-menu-wrap"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"><div class="mega-toggle-block mega-menu-toggle-block mega-toggle-block-1" id="mega-toggle-block-1" tabindex="0"><span class="mega-toggle-label" role="button" aria-expanded="false"><span class="mega-toggle-label-closed">MENU</span><span class="mega-toggle-label-open">MENU</span></span></div></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class="mega-toggle-block mega-menu-toggle-block mega-toggle-block-2" id="mega-toggle-block-2" tabindex="0"><span class="mega-toggle-label" role="button" aria-expanded="false"><span class="mega-toggle-label-closed">MENU</span><span class="mega-toggle-label-open">MENU</span></span></div></div></div><ul id="mega-menu-primary" class="mega-menu max-mega-menu mega-menu-horizontal" data-event="hover_intent" data-effect="slide" data-effect-speed="400" data-effect-mobile="disabled" data-effect-speed-mobile="400" data-panel-width=".site-inner" data-mobile-force-width="false" data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="600" data-unbind="true"><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-hide-arrow mega-has-icon mega-icon-left mega-menu-item-23178" id="mega-menu-item-23178"><a class="dashicons-media-document mega-menu-link" href="https://geekflare.com/articles/" aria-haspopup="true" aria-expanded="false" tabindex="0">Articles<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" style="width: 1200px; left: -723px;">
+<li class="mega-menu-row mega-geekflare geekflare" id="mega-menu-23178-0">
+<ul class="mega-sub-menu">
+<li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-23178-0-0">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-current-post-ancestor mega-current-menu-parent mega-current-post-parent mega-has-icon mega-icon-left mega-menu-item-22947" id="mega-menu-item-22947"><a class="dashicons-shield mega-menu-link" href="https://geekflare.com/category/security/">Security</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-has-icon mega-icon-left mega-menu-item-22945" id="mega-menu-item-22945"><a class="dashicons-editor-code mega-menu-link" href="https://geekflare.com/category/development/">Development</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-post_tag mega-has-icon mega-icon-left mega-menu-item-28279" id="mega-menu-item-28279"><a class="dashicons-admin-site mega-menu-link" href="https://geekflare.com/tag/hosting/">Hosting</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-post_tag mega-has-icon mega-icon-left mega-menu-item-28278" id="mega-menu-item-28278"><a class="dashicons-smiley mega-menu-link" href="https://geekflare.com/tag/open-source/">Open Source</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-has-icon mega-icon-left mega-menu-item-22946" id="mega-menu-item-22946"><a class="dashicons-performance mega-menu-link" href="https://geekflare.com/category/performance/">Performance</a></li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-23178-0-1">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-has-children mega-has-icon mega-icon-left mega-menu-item-22948" id="mega-menu-item-22948"><a class="dashicons-admin-users mega-menu-link" href="https://geekflare.com/category/sysadmin/">Sysadmin<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-post_tag mega-menu-item-28276" id="mega-menu-item-28276"><a class="mega-menu-link" href="https://geekflare.com/tag/linux/">Linux</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-28289" id="mega-menu-item-28289"><a class="mega-menu-link" href="https://geekflare.com/category/web-server/nginx/">Nginx</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-28288" id="mega-menu-item-28288"><a class="mega-menu-link" href="https://geekflare.com/category/web-server/apache/">Apache HTTP</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-28291" id="mega-menu-item-28291"><a class="mega-menu-link" href="https://geekflare.com/category/application-server/websphere/">WebSphere</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-post_tag mega-menu-item-28285" id="mega-menu-item-28285"><a class="mega-menu-link" href="https://geekflare.com/tag/apache-tomcat/">Apache Tomcat</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-post_tag mega-menu-item-28286" id="mega-menu-item-28286"><a class="mega-menu-link" href="https://geekflare.com/tag/jboss/">JBoss</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-22944" id="mega-menu-item-22944"><a class="mega-menu-link" href="https://geekflare.com/category/cloud/">Cloud Computing</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-22943" id="mega-menu-item-22943"><a class="mega-menu-link" href="https://geekflare.com/category/career/">Career</a></li> </ul>
+</li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-23178-0-2">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-has-children mega-has-icon mega-icon-left mega-menu-item-22939" id="mega-menu-item-22939"><a class="dashicons-welcome-write-blog mega-menu-link" href="https://geekflare.com/category/blogging/">Blogger<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-28274" id="mega-menu-item-28274"><a class="mega-menu-link" href="https://geekflare.com/category/blogging/wordpress/">WordPress</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-post_tag mega-menu-item-28277" id="mega-menu-item-28277"><a class="mega-menu-link" href="https://geekflare.com/tag/seo/">SEO</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-post_tag mega-menu-item-28296" id="mega-menu-item-28296"><a class="mega-menu-link" href="https://geekflare.com/tag/design/">Design</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-post_tag mega-menu-item-28295" id="mega-menu-item-28295"><a class="mega-menu-link" href="https://geekflare.com/tag/cloudflare/">Cloudflare</a></li> </ul>
+</li> </ul>
+</li> </ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-hide-arrow mega-has-icon mega-icon-left mega-menu-item-18148" id="mega-menu-item-18148"><a class="dashicons-admin-tools mega-menu-link" href="https://tools.geekflare.com/" aria-haspopup="true" aria-expanded="false" tabindex="0">Tools<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" style="width: 1200px; left: -723px;">
+<li class="mega-menu-row mega-geekflare-tools geekflare-tools" id="mega-menu-18148-0">
+<ul class="mega-sub-menu">
+<li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-18148-0-0">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-has-icon mega-icon-left mega-menu-item-28299" id="mega-menu-item-28299"><a class="dashicons-shield mega-menu-link" href="https://tools.geekflare.com/toolbox">Security<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28300" id="mega-menu-item-28300"><a class="mega-menu-link" href="https://tools.geekflare.com/secure-headers-test">Secure Header Test</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28301" id="mega-menu-item-28301"><a class="mega-menu-link" href="https://tools.geekflare.com/tls-test">TLS 1.3 Test</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28302" id="mega-menu-item-28302"><a class="mega-menu-link" href="https://tools.geekflare.com/tls-scanner">TLS Scanner</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28303" id="mega-menu-item-28303"><a class="mega-menu-link" href="https://tools.geekflare.com/dnssec-test">DNSSEC Test</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28304" id="mega-menu-item-28304"><a class="mega-menu-link" href="https://tools.geekflare.com/blacklist-test">Blacklist Lookup</a></li> </ul>
+</li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-18148-0-1">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-has-icon mega-icon-left mega-menu-item-28305" id="mega-menu-item-28305"><a class="dashicons-performance mega-menu-link" href="https://tools.geekflare.com/toolbox">Performance<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28306" id="mega-menu-item-28306"><a class="mega-menu-link" href="https://tools.geekflare.com/http2-test">HTTP/2 Test</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28307" id="mega-menu-item-28307"><a class="mega-menu-link" href="https://tools.geekflare.com/ttfb-test">TTFB Test</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28308" id="mega-menu-item-28308"><a class="mega-menu-link" href="https://tools.geekflare.com/remote-screenshot">Capture Screenshot</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28316" id="mega-menu-item-28316"><a class="mega-menu-link" href="https://tools.geekflare.com/broken-link-test">Broken Link Checker</a></li> </ul>
+</li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-18148-0-2">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-has-icon mega-icon-left mega-menu-item-28309" id="mega-menu-item-28309"><a class="dashicons-admin-site mega-menu-link" href="https://tools.geekflare.com/toolbox">DNS/IP<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28310" id="mega-menu-item-28310"><a class="mega-menu-link" href="https://tools.geekflare.com/dns-lookup">DNS Lookup</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28312" id="mega-menu-item-28312"><a class="mega-menu-link" href="https://tools.geekflare.com/traceroute-test">Traceroute Test</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28311" id="mega-menu-item-28311"><a class="mega-menu-link" href="https://tools.geekflare.com/ping-test">Ping Test</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28313" id="mega-menu-item-28313"><a class="mega-menu-link" href="https://tools.geekflare.com/port-scanner">Port Scanner</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28314" id="mega-menu-item-28314"><a class="mega-menu-link" href="https://tools.geekflare.com/ip-location-lookup">IP Location</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28315" id="mega-menu-item-28315"><a class="mega-menu-link" href="https://tools.geekflare.com/whois-hosting">Whois Hosting</a></li> </ul>
+</li> </ul>
+</li> </ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-hide-arrow mega-has-icon mega-icon-left mega-menu-item-23015" id="mega-menu-item-23015"><a class="dashicons-list-view mega-menu-link" href="https://geekflare.com/nexus/" aria-haspopup="true" aria-expanded="false" tabindex="0">Collections<span class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" style="width: 1200px; left: -723px;">
+<li class="mega-menu-row mega-geekflare-collections geekflare-collections" id="mega-menu-23015-0">
+<ul class="mega-sub-menu">
+<li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-23015-0-0">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28321" id="mega-menu-item-28321"><a class="mega-menu-link" href="https://geekflare.com/nexus/security/">Security</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28322" id="mega-menu-item-28322"><a class="mega-menu-link" href="https://geekflare.com/nexus/performance/">Performance</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28318" id="mega-menu-item-28318"><a class="mega-menu-link" href="https://geekflare.com/nexus/hosting/">Hosting</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28326" id="mega-menu-item-28326"><a class="mega-menu-link" href="https://geekflare.com/nexus/internet/">Internet</a></li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-23015-0-1">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28320" id="mega-menu-item-28320"><a class="mega-menu-link" href="https://geekflare.com/nexus/wordpress/">WordPress</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28319" id="mega-menu-item-28319"><a class="mega-menu-link" href="https://geekflare.com/nexus/seo/">SEO</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28325" id="mega-menu-item-28325"><a class="mega-menu-link" href="https://geekflare.com/nexus/growth-hacking/">Growth Hacking</a></li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-1-of-3" id="mega-menu-23015-0-2">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28317" id="mega-menu-item-28317"><a class="mega-menu-link" href="https://geekflare.com/nexus/startup/">Startup</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28323" id="mega-menu-item-28323"><a class="mega-menu-link" href="https://geekflare.com/nexus/design/">Design</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-28324" id="mega-menu-item-28324"><a class="mega-menu-link" href="https://geekflare.com/nexus/career/">Career</a></li> </ul>
+</li> </ul>
+</li></ul>
+</li></ul></div></div></nav></div></header><div class="after-header widget-area"><section id="text-42" class="widget widget_text"><div class="widget-wrap"> <div class="textwidget"><div id="waldo-tag-915"></div>
+</div>
+</div></section>
+</div><div class="site-inner"><h1 class="entry-title">How to Implement Security HTTP Headers to Prevent Vulnerabilities?</h1>
+<div class="authority-featured-image"><img src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/header-security.webp" class="authority-single-image" alt="" srcset="https://geekflare.com/wp-content/uploads/2016/10/header-security.png 1200w, https://geekflare.com/wp-content/uploads/2016/10/header-security-495x160.png 495w, https://geekflare.com/wp-content/uploads/2016/10/header-security-840x270.png 840w" sizes="(max-width: 1200px) 100vw, 1200px" width="1200" height="385"></div><div class="content-sidebar-wrap"><div class="before-content-widget-area"><section id="text-14" class="widget widget_text"><div class="widget-wrap"> <div class="textwidget"><p></p><center><a href="https://www.netsparker.com/scan-website-security-issues/?utm_source=geekflare&amp;utm_medium=cpc&amp;utm_campaign=article" target="_blank" rel="noopener noreferrer">Netsparker Web Application Security Scanner</a> – the only solution that delivers automatic verification of vulnerabilities with Proof-Based Scanning™.</center><p></p>
+</div>
+</div></section>
+</div><main class="content" id="genesis-content"><p class="entry-meta"><span class="author-avatar"><img alt="" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/Chandan-64x64.webp" srcset="https://geekflare.com/wp-content/uploads/2018/05/Chandan-128x128.png 2x" class="avatar avatar-64 photo" width="64" height="64"></span><span class="metadata">by <span class="entry-author"><a href="https://geekflare.com/author/chandan/" class="entry-author-link" rel="author"><span class="entry-author-name">Chandan Kumar</span></a></span> | <time class="entry-modified-time" datetime="2018-12-25T03:24:22+08:00">December 25, 2018</time> | <span class="entry-categories"><a href="https://geekflare.com/category/security/" rel="category tag">Security</a></span></span></p><article class="post-15016 post type-post status-publish format-standard has-post-thumbnail category-security entry"><header class="entry-header"></header><div class="entry-content"><div class="essb_links essb_displayed_postfloat essb_share essb_template_round-retina essb_template_modern-light-retina essb_842996428 print-no essb_postfloat_fixed" id="essb_displayed_postfloat_842996428" data-essb-postid="15016" data-essb-position="postfloat" data-essb-button-style="icon" data-essb-template="round-retina essb_template_modern-light-retina" data-essb-counter-pos="hidden" data-essb-url="https://geekflare.com/http-header-implementation/" data-essb-twitter-url="https://geekflare.com/http-header-implementation/" data-essb-instance="842996428">
+<ul class="essb_links_list essb_force_hide_name essb_force_hide">
+<li class="essb_item essb_link_twitter nolightbox"> <a href="#" title="" onclick="if (!window.__cfRLUnblockHandlers) return false; essb.window('https://twitter.com/intent/tweet?text=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F&amp;url=https://geekflare.com/http-header-implementation/&amp;counturl=https://geekflare.com/http-header-implementation/','twitter','842996428'); return false;" target="_blank" rel="nofollow" class="nolightbox"><span class="essb_icon essb_icon_twitter"></span><span class="essb_network_name essb_noname"></span></a></li>
+<li class="essb_item essb_link_facebook nolightbox"> <a href="https://www.facebook.com/sharer/sharer.php?u=https://geekflare.com/http-header-implementation/&amp;t=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F" title="" onclick="if (!window.__cfRLUnblockHandlers) return false; essb.window('https://www.facebook.com/sharer/sharer.php?u=https://geekflare.com/http-header-implementation/&amp;t=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F','facebook','842996428'); return false;" target="_blank" rel="nofollow" class="nolightbox"><span class="essb_icon essb_icon_facebook"></span><span class="essb_network_name essb_noname"></span></a></li>
+<li class="essb_item essb_link_linkedin nolightbox"> <a href="https://www.linkedin.com/shareArticle?mini=true&amp;ro=true&amp;trk=EasySocialShareButtons&amp;title=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F&amp;url=https://geekflare.com/http-header-implementation/" title="" onclick="if (!window.__cfRLUnblockHandlers) return false; essb.window('https://www.linkedin.com/shareArticle?mini=true&amp;ro=true&amp;trk=EasySocialShareButtons&amp;title=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F&amp;url=https://geekflare.com/http-header-implementation/','linkedin','842996428'); return false;" target="_blank" rel="nofollow" class="nolightbox"><span class="essb_icon essb_icon_linkedin"></span><span class="essb_network_name essb_noname"></span></a></li>
+</ul>
+</div>
+<p class="intro">Do you know most the security vulnerabilities can be fixed by implementing necessary headers in the response header?</p>
+<p>Security is as important as content and SEO of your website, and thousands of <a href="https://geekflare.com/real-time-cyber-attacks/">website get hacked</a> due to misconfiguration or lack of protection.</p>
+<p>If you are a website owner or security engineer and looking to <a href="http://sucuri.7eer.net/c/245992/212721/3713?u=https%3A%2F%2Fsucuri.net%2Fwebsite-security-platform%2F" target="_blank" rel="nofollow">protect your website</a> from <strong>Clickjacking, code injection, MIME types, XSS</strong>, etc. attacks then this guide will help you.</p>
+<p>In this article, I will talk about various HTTP Header to implement 
+in multiple web servers, network edge &amp; CDN provider for <a href="https://geekflare.com/web-application-firewall/">better website protection</a>.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>You are advised to take a backup of configuration file prior making changes</li>
+<li>Some of the headers may not be supported on all the browsers so <a href="https://caniuse.com/" target="_blank" rel="nofollow">check out the compatibility</a> before the implementation.</li>
+<li>Mod_headers must be enabled in Apache to implement these headers. Ensure the following line uncommented in <code>httpd.conf</code> file.</li>
+<li>LoadModule headers_module modules/mod_headers.so</li>
+</ul>
+<p>If you are using <a href="http://sucuri.7eer.net/c/245992/212721/3713?u=https%3A%2F%2Fsucuri.net%2Fwebsite-firewall%2F" target="_blank" rel="nofollow">SUCURI Cloud WAF</a>, then you don’t have to worry about adding these manually on your web server as most of them are automatically enabled.</p>
+<div id="toc_container" class="toc_transparent no_bullets"><p class="toc_title">HTTP Headers List</p><ul class="toc_list"><li><a href="#X-XSS-Protection">X-XSS-Protection</a></li><li><a href="#HTTP-Strict-Transport-Security">HTTP Strict Transport Security</a></li><li><a href="#X-Frame-Options">X-Frame-Options</a></li><li><a href="#X-Content-Type-Options">X-Content-Type-Options</a></li><li><a href="#HTTP-Public-Key-Pinning">HTTP Public Key Pinning</a></li><li><a href="#Content-Security-Policy">Content Security Policy</a></li><li><a href="#X-Permitted-Cross-Domain-Policies">X-Permitted-Cross-Domain-Policies</a></li><li><a href="#Referrer-Policy">Referrer Policy</a></li><li><a href="#Expect-CT">Expect-CT</a></li></ul></div>
+<h2><span id="X-XSS-Protection">X-XSS-Protection</span></h2>
+<p>X-XSS-Protection header can prevent some level of <strong>XSS</strong> (cross-site-scripting) attacks, and this is compatible with IE 8+, Chrome, Opera, Safari &amp; Android.</p>
+<p>Google, Facebook, Github use this header, and most of the penetration testing consultancy will ask you to implement this.</p>
+<p>There are four possible ways you can configure this header.</p>
+<table>
+<tbody>
+<tr>
+<td width="147"><strong>Parameter Value</strong></td>
+<td width="315"><strong>Meaning</strong></td>
+</tr>
+<tr>
+<td width="147">0</td>
+<td width="315">XSS filter disabled</td>
+</tr>
+<tr>
+<td width="147">1</td>
+<td width="315">XSS filter enabled and sanitized the page if attack detected</td>
+</tr>
+<tr>
+<td width="147">1;mode=block</td>
+<td width="315">XSS filter enabled and prevented rendering the page if attack detected</td>
+</tr>
+<tr>
+<td width="147">1;report=http://example.com/report_URI</td>
+<td width="315">XSS filter enabled and reported the violation if attack detected</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s implement <strong>1;mode=block</strong> in the following web servers.</p>
+<h3>Apache HTTP Server</h3>
+<p>Add the following entry in httpd.conf of your Apache web server</p>
+<pre>Header set X-XSS-Protection "1; mode=block"</pre>
+<p>Restart the apache to verify</p>
+<h3>Nginx</h3>
+<p>Add the following in nginx.conf under http block</p>
+<pre>add_header X-XSS-Protection "1; mode=block";</pre>
+<p>Nginx restart is needed to get this reflected on your web page response header.</p>
+<h3>MaxCDN</h3>
+<p>If you are using <a href="https://tracking.maxcdn.com/c/245992/3982/378" target="_blank" rel="nofollow">MaxCDN</a> then adding header is easy and on-the-fly.</p>
+<p>Go to Edge Rules &gt;&gt; click “New Rule” and select “Add X-XSS-Protection Header” from the drop-down.</p>
+<p><img class="alignnone size-full wp-image-15017" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/edgerules.webp" alt="edgerules" srcset="https://geekflare.com/wp-content/uploads/2016/10/edgerules.png 302w, https://geekflare.com/wp-content/uploads/2016/10/edgerules-167x264.png 167w" sizes="(max-width: 302px) 100vw, 302px" width="302" height="476"></p>
+<h3>Microsoft IIS</h3>
+<ul>
+<li>Open IIS Manager</li>
+<li>Select the Site you need to enable the header for</li>
+<li>Go to “HTTP Response Headers.”</li>
+<li>Click “Add” under actions</li>
+<li>Enter name, value and click Ok</li>
+</ul>
+<p><img class="alignnone size-full wp-image-15025" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/iis-x-xss-protection.webp" alt="iis-x-xss-protection" srcset="https://geekflare.com/wp-content/uploads/2016/10/iis-x-xss-protection.png 385w, https://geekflare.com/wp-content/uploads/2016/10/iis-x-xss-protection-133x75.png 133w" sizes="(max-width: 385px) 100vw, 385px" width="385" height="220"></p>
+<ul>
+<li>Restart IIS to see the results</li>
+</ul>
+<h2><span id="HTTP-Strict-Transport-Security">HTTP Strict Transport Security</span></h2>
+<p>HSTS (HTTP Strict Transport Security) header to ensure all 
+communication from a browser is sent over HTTPS (HTTP Secure). This 
+prevents HTTPS click through prompts and redirects HTTP requests to 
+HTTPS.</p>
+<p>Before implementing this header, you must ensure all your website page is accessible over HTTPS else they will be blocked.</p>
+<p>HSTS header is supported on all the major latest version of a browser
+ like IE, Firefox, Opera, Safari, and Chrome. There are three parameters
+ configuration.</p>
+<table>
+<tbody>
+<tr>
+<td width="198"><strong>Parameter Value</strong></td>
+<td width="265"><strong>Meaning</strong></td>
+</tr>
+<tr>
+<td width="198">max-age</td>
+<td width="265">Duration (in seconds) to tell a browser that requests are available only over HTTPS.</td>
+</tr>
+<tr>
+<td width="198">includeSubDomains</td>
+<td width="265">Configuration is valid for subdomain as well.</td>
+</tr>
+<tr>
+<td width="198">preload</td>
+<td width="265">Use if you would like your domain to be included in the <a href="https://hstspreload.appspot.com/" target="_blank" rel="nofollow">HSTS preload list</a></td>
+</tr>
+</tbody>
+</table>
+<p>So let’s take an example of having HSTS configured for one year including preload for domain and <a href="https://geekflare.com/find-subdomains/">sub-domain</a>.</p>
+<h3>Apache HTTP Server</h3>
+<p>You can implement HSTS in Apache by adding the following entry in httpd.conf file</p>
+<pre>Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"</pre>
+<p>Restart apache to see the results</p>
+<h3>Nginx</h3>
+<p>To configure HSTS in Nginx, add the next entry in nginx.conf under server (SSL) directive</p>
+<pre>add_header Strict-Transport-Security 'max-age=31536000; includeSubDomains; preload';</pre>
+<p>As usual, you will need to restart Nginx to verify</p>
+<h3>Cloud Flare</h3>
+<p>If you are using Cloud Flare, then you can enable HSTS in just a few clicks.</p>
+<ul>
+<li>Log in to <a href="https://www.cloudflare.com/" target="_blank" rel="nofollow">Cloud Flare</a> and select the site</li>
+<li>Go to “Crypto” tab and click “Enable HSTS.”</li>
+</ul>
+<p><img class="alignnone size-full wp-image-15022" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/cloudflare-hsts-config.webp" alt="cloudflare-hsts-config" srcset="https://geekflare.com/wp-content/uploads/2016/10/cloudflare-hsts-config.png 576w, https://geekflare.com/wp-content/uploads/2016/10/cloudflare-hsts-config-158x264.png 158w, https://geekflare.com/wp-content/uploads/2016/10/cloudflare-hsts-config-376x628.png 376w, https://geekflare.com/wp-content/uploads/2016/10/cloudflare-hsts-config-299x500.png 299w" sizes="(max-width: 576px) 100vw, 576px" width="576" height="962"></p>
+<p>Select the settings the one you need and changes will be applied on the fly.</p>
+<h3>Microsoft IIS</h3>
+<p>Launch the IIS Manager and add the header by going to “HTTP Response Headers” for the respective site.</p>
+<p><img class="alignnone size-full wp-image-15023" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/iis-hsts.webp" alt="iis-hsts" srcset="https://geekflare.com/wp-content/uploads/2016/10/iis-hsts.png 382w, https://geekflare.com/wp-content/uploads/2016/10/iis-hsts-133x75.png 133w, https://geekflare.com/wp-content/uploads/2016/10/iis-hsts-380x218.png 380w" sizes="(max-width: 382px) 100vw, 382px" width="382" height="218"></p>
+<p>Restart the site</p>
+<h2><span id="X-Frame-Options">X-Frame-Options</span></h2>
+<p>Use X-Frame-Options header to prevent <strong>Clickjacking</strong> 
+vulnerability on your website. By implementing this header, you instruct
+ the browser not to embed your web page in frame/iframe. This has some 
+limitation in browser support, so you got to check before implementing 
+it.</p>
+<p>You can configure the following three parameters.</p>
+<table>
+<tbody>
+<tr>
+<td width="198"><strong>Parameter Value</strong></td>
+<td width="265"><strong>Meaning</strong></td>
+</tr>
+<tr>
+<td width="198">SAMEORIGIN</td>
+<td width="265">Frame/iframe of content is only allowed from the same site origin.</td>
+</tr>
+<tr>
+<td width="198">DENY</td>
+<td width="265">Prevent any domain to embed your content using frame/iframe.</td>
+</tr>
+<tr>
+<td width="198">ALLOW-FROM</td>
+<td width="265">Allow framing the content only on particular URI.</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s take a look at how to implement “<strong>DENY</strong>” so no domain embeds the web page.</p>
+<h3>Apache</h3>
+<p>Add the following line in httpd.conf and restart the web server to verify the results.</p>
+<pre>Header always append X-Frame-Options DENY</pre>
+<h3>Nginx</h3>
+<p>Add the following in nginx.conf under server directive/block.</p>
+<p>add_header X-Frame-Options “DENY”;</p>
+<p>Restart to verify the results</p>
+<h3>F5 LTM</h3>
+<p>Create an iRule with the following and associated with the respective virtual server.</p>
+<pre>when HTTP_RESPONSE {
+
+HTTP::header insert "X-FRAME-OPTIONS" "DENY"
+
+}</pre>
+<p>You don’t need to restart anything, changes are reflected in the air.</p>
+<h3>WordPress</h3>
+<p>You can get this header implemented through WordPress too. Add the following in a wp-config.php file</p>
+<pre>header('X-Frame-Options: DENY);</pre>
+<p>If you are not comfortable editing the file, then you can use a <a href="https://geekflare.com/wordpress-x-frame-options-httponly-cookie/">plugin as explained here</a>.</p>
+<h3>Microsoft IIS</h3>
+<p>Add the header by going to “HTTP Response Headers” for respective site.</p>
+<p><img class="alignnone size-full wp-image-15024" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/iis-x-frame-options.webp" alt="iis-x-frame-options" srcset="https://geekflare.com/wp-content/uploads/2016/10/iis-x-frame-options.png 387w, https://geekflare.com/wp-content/uploads/2016/10/iis-x-frame-options-133x75.png 133w" sizes="(max-width: 387px) 100vw, 387px" width="387" height="222"></p>
+<p>Restart the site to see the results.</p>
+<h2><span id="X-Content-Type-Options">X-Content-Type-Options</span></h2>
+<p>Prevent <strong>MIME</strong> types security risk by adding this 
+header to your web page’s HTTP response. Having this header instruct 
+browser to consider files types as defined and disallow content 
+sniffing. There is only one parameter you got to add “nosniff”.</p>
+<p>Let’s see how to advertise this header.</p>
+<h3>Apache</h3>
+<p>You can do this by adding the below line in httpd.conf file</p>
+<pre>Header set X-Content-Type-Options nosniff</pre>
+<p>Don’t forget to restart the Apache web server to get the configuration active.</p>
+<h3>Nginx</h3>
+<p>Add the following line in nginx.conf file under server block.</p>
+<pre>add_header X-Content-Type-Options nosniff;</pre>
+<p>As usual, you got to restart the Nginx to check the results.</p>
+<h3>WordPress</h3>
+<p>If you are using the WordPress, then you may consider using <a href="https://wordpress.org/plugins/security-headers/" target="_blank" rel="nofollow">Security Headers</a> plugin to implement this header.</p>
+<h3>Microsoft IIS</h3>
+<p>Open IIS and go to HTTP Response Headers</p>
+<p>Click on Add and enter the Name and Value</p>
+<p><img class="alignnone size-full wp-image-15020" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/iis-mime-types.webp" alt="iis-mime-types" srcset="https://geekflare.com/wp-content/uploads/2016/10/iis-mime-types.png 382w, https://geekflare.com/wp-content/uploads/2016/10/iis-mime-types-380x220.png 380w" sizes="(max-width: 382px) 100vw, 382px" width="382" height="220"></p>
+<p>Click OK and restart the IIS to verify the results.</p>
+<h2><span id="HTTP-Public-Key-Pinning">HTTP Public Key Pinning</span></h2>
+<p>Minimize the man-in-the-middle (<strong>MITM</strong>) attacks risk by pinning certificate. This is possible with <a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#Public_Key_Pinning_Extension_for_HTTP_.28HPKP.29" target="_blank" rel="nofollow">HPKP</a> (HTTP Public Key Pinning) header.</p>
+<p>You can pin the root certificate public key or immediate certificate.
+ At the time of writing, HPKP currently works in Firefox and Chrome and 
+support <a href="https://geekflare.com/test-ssl-sha1-vulnerability-and-fix/">SHA-256</a> hash algorithm.</p>
+<p>There are four possible parameter configurations.</p>
+<table>
+<tbody>
+<tr>
+<td width="198"><strong>Parameter Value</strong></td>
+<td width="265"><strong>Meaning</strong></td>
+</tr>
+<tr>
+<td width="198">report-uri=”url”</td>
+<td width="265">Report to the specified URL if pin validation fails. This is optional.</td>
+</tr>
+<tr>
+<td width="198">pin-sha256=”sha256key”</td>
+<td width="265">Specify the pins here</td>
+</tr>
+<tr>
+<td width="198">max-age=</td>
+<td width="265">Browser to remember the time in seconds that site is accessible only using one of the pinned keys.</td>
+</tr>
+<tr>
+<td width="198">IncludeSubDomains</td>
+<td width="265">This is applicable on a subdomain as well.</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s see HPKP header example from facebook.com</p>
+<pre class="line-numbers language-markup"><code class=" language-markup">public-key-pins-report-only:max-age=500; pin-sha256="WoiWRyIOVNa9ihaBciRSC7XHjliYS9VwUGOIud4PB18="; pin-sha256="r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E="; pin-sha256="q4PO2G2cbkZhZ82+JgmRUyGMoAeozA+BSXVXQWB8XWQ="; report-uri=http://reports.fb.com/hpkp/</code></pre>
+<p>If this is something you need to implement on your website, then head to <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/" target="_blank" rel="nofollow">implementation guide written by Scott Helme</a>.</p>
+<h2><span id="Content-Security-Policy">Content Security Policy</span></h2>
+<p>Prevent XSS, clickjacking, <strong>code injection</strong> attacks by implementing the Content Security Policy (CSP) header in your web page HTTP response. <a href="https://content-security-policy.com/" target="_blank" rel="nofollow">CSP</a> instruct browser to load allowed content to load on the website.</p>
+<p>All <a href="https://caniuse.com/#feat=contentsecuritypolicy2" target="_blank" rel="nofollow">browsers don’t support CSP</a>, so you got to verify before implementing it. There are three ways you can achieve CSP headers.</p>
+<ol>
+<li>Content-Security-Policy – Level 2/1.0</li>
+<li>X-Content-Security-Policy – Deprecated</li>
+<li>X-Webkit-CSP – Deprecated</li>
+</ol>
+<p>If you are still using deprecated one, then you may consider upgrading to the latest one.</p>
+<p>There are multiple parameters possible to implement CSP, and you can refer <a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#Content-Security-Policy" target="_blank" rel="nofollow">OWASP</a> for an idea. However, let’s go through two most used parameters.</p>
+<table>
+<tbody>
+<tr>
+<td width="198"><strong>Parameter Value</strong></td>
+<td width="265"><strong>Meaning</strong></td>
+</tr>
+<tr>
+<td width="198">default-src</td>
+<td width="265">Load everything from a defined source</td>
+</tr>
+<tr>
+<td width="198">script-src</td>
+<td width="265">Load only scripts from defined source</td>
+</tr>
+</tbody>
+</table>
+<p>The following example to load everything from the same origin in various web servers.</p>
+<h3>Apache</h3>
+<p>Get the following added in httpd.conf file and restart the web server to get effective.</p>
+<pre>Header set Content-Security-Policy "default-src 'self';"</pre>
+<h3>Nginx</h3>
+<p>Add the following in server block in nginx.conf file</p>
+<pre>add_header Content-Security-Policy "default-src 'self';";</pre>
+<h3>Microsoft IIS</h3>
+<p>Go to HTTP Response Headers for your respective site in IIS Manager and add the following</p>
+<p><img class="alignnone size-full wp-image-15019" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/iis-csp.webp" alt="iis-csp" srcset="https://geekflare.com/wp-content/uploads/2016/10/iis-csp.png 381w, https://geekflare.com/wp-content/uploads/2016/10/iis-csp-133x75.png 133w, https://geekflare.com/wp-content/uploads/2016/10/iis-csp-380x214.png 380w" sizes="(max-width: 381px) 100vw, 381px" width="381" height="214"></p>
+<h2><span id="X-Permitted-Cross-Domain-Policies">X-Permitted-Cross-Domain-Policies</span></h2>
+<p>Using Adobe products like PDF, Flash, etc.? You can implement this 
+header to instruct browser&nbsp;how to handle the requests over a cross 
+domain. By implementing this header, you restrict loading your site’s 
+assets from other domain to avoid resource abuse.</p>
+<p>There are a few options available.</p>
+<table>
+<tbody>
+<tr>
+<td>Value</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>none</td>
+<td>no policy is allowed</td>
+</tr>
+<tr>
+<td>master-only</td>
+<td>allow only the master policy</td>
+</tr>
+<tr>
+<td>all</td>
+<td>everything is allowed</td>
+</tr>
+<tr>
+<td>by-content-only</td>
+<td>Allow only a certain type of content. Example – XML</td>
+</tr>
+<tr>
+<td>by-ftp-only</td>
+<td>applicable only for an FTP server</td>
+</tr>
+</tbody>
+</table>
+<h3>Apache</h3>
+<p>If you don’t want to allow any policy.</p>
+<pre class="line-numbers language-markup"><code class=" language-markup">Header set X-Permitted-Cross-Domain-Policies "none"</code></pre>
+<p>You should see the header like the following.</p>
+<p><img class="alignnone size-full wp-image-24445" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/permitted-cross-domain.webp" alt="" srcset="https://geekflare.com/wp-content/uploads/2016/10/permitted-cross-domain.png 350w, https://geekflare.com/wp-content/uploads/2016/10/permitted-cross-domain-345x270.png 345w" sizes="(max-width: 350px) 100vw, 350px" width="350" height="274"></p>
+<h3>Nginx</h3>
+<p>And, let’s say you need to implement master-only then add the following in <code>nginx.conf</code> under <code>server</code> block.</p>
+<pre class="line-numbers language-markup"><code class=" language-markup">add_header X-Permitted-Cross-Domain-Policies master-only;</code></pre>
+<p>and the result.</p>
+<p><img class="alignnone size-full wp-image-24448" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/nginx-permitted-cross.webp" alt="" width="350" height="240"></p>
+<h2><span id="Referrer-Policy">Referrer Policy</span></h2>
+<p>Looking to control the referrer policy of your site? There are 
+certain privacy and security benefits. However, not all the options are 
+supported by all the browsers so review your requirement before the 
+implementation.</p>
+<p>Referrer-Policy supports the following syntax.</p>
+<table style="height: 120px;">
+<tbody>
+<tr style="height: 24px;">
+<td style="height: 24px; width: 208px;">Value</td>
+<td style="height: 24px; width: 83px;">Description</td>
+</tr>
+<tr style="height: 24px;">
+<td style="height: 24px; width: 208px;">no-referrer</td>
+<td style="height: 24px; width: 83px;">Referrer information will not be sent with the request.</td>
+</tr>
+<tr style="height: 24px;">
+<td style="height: 24px; width: 208px;">no-referrer-when-downgrade</td>
+<td style="height: 24px; width: 83px;">the default setting where referrer is sent to the same protocol like HTTP to HTTP, HTTPS to HTTPS.</td>
+</tr>
+<tr style="height: 24px;">
+<td style="height: 24px; width: 208px;">unsafe-url</td>
+<td style="height: 24px; width: 83px;">full URL will be sent with the request.</td>
+</tr>
+<tr style="height: 24px;">
+<td style="height: 24px; width: 208px;">same-origin</td>
+<td style="height: 24px; width: 83px;">referrer will be sent only for same origin site.</td>
+</tr>
+<tr>
+<td style="width: 208px;">strict-origin</td>
+<td style="width: 83px;">send only when a protocol is HTTPS</td>
+</tr>
+<tr>
+<td style="width: 208px;">strict-origin-when-cross-origin</td>
+<td style="width: 83px;">the full URL will be sent over a strict protocol like HTTPS</td>
+</tr>
+<tr>
+<td style="width: 208px;">origin</td>
+<td style="width: 83px;">send the origin URL in all the requests</td>
+</tr>
+<tr>
+<td style="width: 208px;">origin-when-cross-origin</td>
+<td style="width: 83px;">send FULL URL on the same origin. However, send only origin URL in other cases.</td>
+</tr>
+</tbody>
+</table>
+<h3>Apache</h3>
+<p>You can add the following if you want to set no-referrer.</p>
+<pre class="line-numbers language-markup"><code class=" language-markup">Header set Referrer-Policy "no-referrer"</code></pre>
+<p>And after the restart, you should have in the response headers.</p>
+<p><img class="alignnone size-full wp-image-24449" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/referrer-policy-apache.webp" alt="" srcset="https://geekflare.com/wp-content/uploads/2016/10/referrer-policy-apache.png 350w, https://geekflare.com/wp-content/uploads/2016/10/referrer-policy-apache-339x270.png 339w" sizes="(max-width: 350px) 100vw, 350px" width="350" height="279"></p>
+<h3>Nginx</h3>
+<p>Let’s say you need to implement same-origin so you got to add the following.</p>
+<pre class="line-numbers language-markup"><code class=" language-markup">add_header Referrer-Policy same-origin;</code></pre>
+<p>Once configured, you should have the results as below.</p>
+<p><img class="alignnone size-full wp-image-24450" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/referrer-nginx-same-origin.webp" alt="" width="350" height="252"></p>
+<h2><span id="Expect-CT">Expect-CT</span></h2>
+<p>A new header still in experimental status is to instruct the browser 
+to validate the connection with web servers for certificate transparency
+ (CT). This project by Google aims to fix some of the <a href="https://geekflare.com/ssl-test-certificate/">flaws in the SSL/TLS certificate</a> system.</p>
+<p>The following three variables are available for Expect-CT header.</p>
+<table>
+<tbody>
+<tr>
+<td>Value</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>max-age</td>
+<td>In seconds, for how long browser should cache the policy.</td>
+</tr>
+<tr>
+<td>enforce</td>
+<td>An optional directive to enforce the policy.</td>
+</tr>
+<tr>
+<td>report-uri</td>
+<td>Browser to send a report to the specified URL when valid certificate transparency not received.</td>
+</tr>
+</tbody>
+</table>
+<h3>Apache</h3>
+<p>Let’s assume you want to enforce this policy, report, and cache for 12 hours then you got to add the following.</p>
+<pre class="line-numbers language-markup"><code class=" language-markup">Header set Expect-CT 'enforce, max-age=43200, report-uri="https://somedomain.com/report"'</code></pre>
+<p>And, here is the result.</p>
+<p><img class="alignnone size-full wp-image-24466" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/expect-ct-apache-http.webp" alt="" width="550" height="250"></p>
+<h3>Nginx</h3>
+<p>What if you want to report and cache for 1 hour?</p>
+<pre class="line-numbers language-markup"><code class=" language-markup">add_header Expect-CT 'max-age=60, report-uri="https://mydomain.com/report"';</code></pre>
+<p>Output would be.</p>
+<p><img class="alignnone size-full wp-image-24467" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/expect-ct-nginx.webp" alt="" width="500" height="247"></p>
+<p><strong>Conclusion</strong></p>
+<p>Securing a website is challenging, and I hope by implementing above 
+headers you add a layer of security. If you are running a business site,
+ then you may also consider using cloud-WAF like <a href="https://sucuri.7eer.net/c/245992/212721/3713?u=https%3A%2F%2Fsucuri.net%2Fwebsite-firewall%2F" target="_blank" rel="nofollow">SUCURI</a> to protect your online business.</p>
+<span id="tve_leads_end_content" style="display: block; visibility: hidden; border: 1px solid transparent;"></span><div class="tve-leads-post-footer tve-tl-anim tve-leads-track-post_footer-325 tl-anim-instant tve-trigger-hide"><div class="tl-style" id="tve_tcb2_set-060-v3" data-state="325" data-form-state=""><style type="text/css" class="tve_custom_style">@media (min-width: 300px){[data-css="tve-u-25ca9d3b4aa9d8"] { background-color: rgb(231, 237, 243) !important; }[data-css="tve-u-75ca9d3b4aa9dd"] { padding: 20px !important; }[data-css="tve-u-15ca9d3b4aa9d7"] { padding: 20px !important; }#tve_editor [data-css="tve-u-125ca9d3b4aa9e2"]:hover button { background-color: rgb(255, 115, 52) !important; }#tve_editor [data-css="tve-u-105ca9d3b4aa9e0"]:hover input { border: 1px solid rgb(84, 204, 234); }[data-css="tve-u-85ca9d3b4aa9de"] { margin-bottom: 10px !important; margin-top: 10px !important; }[data-css="tve-u-115ca9d3b4aa9e1"] { max-width: 40%; }[data-css="tve-u-95ca9d3b4aa9df"] { max-width: 60%; }[data-css="tve-u-55ca9d3b4aa9db"] { margin-bottom: 20px !important; margin-top: 10px !important; }[data-css="tve-u-05ca9d3b4aa9d4"] { overflow: hidden; background-color: rgb(255, 255, 255) !important; border-radius: 5px !important; border: 1px solid rgb(231, 237, 243) !important; padding: 0px !important; }#tve_editor [data-css="tve-u-125ca9d3b4aa9e2"] button { font-size: 25px; line-height: 30px; border: none rgb(255, 163, 163); border-radius: 0px; overflow: hidden; font-weight: normal !important; padding-top: 21px !important; padding-bottom: 21px !important; background-color: rgb(255, 78, 0) !important; background-image: none !important; }#tve_editor [data-css="tve-u-105ca9d3b4aa9e0"] input { font-size: 21px; line-height: 30px; font-family: inherit; font-weight: 300; color: rgb(51, 51, 51); border: 1px solid rgba(231, 237, 243, 0.5); border-radius: 0px; overflow: hidden; background-image: none !important; padding: 20px 20px 20px 26px !important; }[data-css="tve-u-65ca9d3b4aa9dc"] { line-height: 1.5em !important; }#tve_editor [data-css="tve-u-65ca9d3b4aa9dc"] { font-family: inherit !important; font-size: 21px !important; color: rgb(51, 51, 51) !important; }[data-css="tve-u-35ca9d3b4aa9d9"] { margin-bottom: 20px !important; }#tve_editor [data-css="tve-u-45ca9d3b4aa9da"] { font-size: 30px !important; }}@media (max-width: 767px){[data-css="tve-u-75ca9d3b4aa9dd"] { padding: 10px !important; }[data-css="tve-u-15ca9d3b4aa9d7"] { padding: 10px !important; }[data-css="tve-u-05ca9d3b4aa9d4"] { padding: 0px !important; }}</style><style type="text/css" class="tve_user_custom_style">.tve-leads-conversion-object .thrv_heading h1,.tve-leads-conversion-object .thrv_heading h2,.tve-leads-conversion-object .thrv_heading h3{margin:0;padding:0}.tve-leads-conversion-object .thrv_text_element p,.tve-leads-conversion-object .thrv_text_element h1,.tve-leads-conversion-object .thrv_text_element h2,.tve-leads-conversion-object .thrv_text_element h3{margin:0}.tve-leads-conversion-object .thrv_heading h1,.tve-leads-conversion-object .thrv_heading h2,.tve-leads-conversion-object .thrv_heading h3{margin:0;padding:0}.tve-leads-conversion-object .thrv_text_element p,.tve-leads-conversion-object .thrv_text_element h1,.tve-leads-conversion-object .thrv_text_element h2,.tve-leads-conversion-object .thrv_text_element h3{margin:0}</style><style type="text/css" class="tve_global_style"></style><div class="tve-leads-conversion-object" data-tl-type="post_footer"><div class="tve_flt"><div id="tve_editor" class="tve_shortcode_editor"><div class="thrv-leads-form-box tve_no_drag tve_no_icons thrv_wrapper tve_editor_main_content thrv-leads-in-content tve_empty_dropzone" style="" data-css="tve-u-05ca9d3b4aa9d4"><div class="thrv_wrapper thrv-page-section" style="" data-css="tve-u-15ca9d3b4aa9d7">
+<div class="tve-page-section-out" data-css="tve-u-25ca9d3b4aa9d8"></div>
+<div class="tve-page-section-in tve_empty_dropzone"><div class="thrv_wrapper thrv_heading" data-tag="h3" style="" data-css="tve-u-35ca9d3b4aa9d9"><h3 data-css="tve-u-45ca9d3b4aa9da">Latest Articles in Your Inbox.</h3></div><div class="thrv_wrapper thrv_text_element tve_empty_dropzone" style="" data-css="tve-u-55ca9d3b4aa9db"><p data-css="tve-u-65ca9d3b4aa9dc" data-default="Enter your text here...">Join to get notified about new blog post. Stay up to date!</p></div></div>
+</div><div class="thrv_wrapper thrv-page-section" style="" data-css="tve-u-75ca9d3b4aa9dd">
+<div class="tve-page-section-out"></div>
+<div class="tve-page-section-in tve_empty_dropzone"><div class="thrv_wrapper thrv_lead_generation" data-connection="api" style="" data-css="tve-u-85ca9d3b4aa9de"><input type="hidden" class="tve-lg-err-msg" value="{&quot;email&quot;:&quot;Email address invalid&quot;,&quot;phone&quot;:&quot;Phone number invalid&quot;,&quot;password&quot;:&quot;Password invalid&quot;,&quot;passwordmismatch&quot;:&quot;Password mismatch error&quot;,&quot;required&quot;:&quot;Required field missing&quot;}">
+<div class="thrv_lead_generation_container tve_clearfix">
+<form action="#" method="post" novalidate="novalidate">
+<div class="tve_lead_generated_inputs_container tve_clearfix tve_empty_dropzone">
+<div class="thrv_wrapper thrv-columns"><div class="tcb-flex-row tcb--cols--2 tcb-resized"><div class="tcb-flex-col" data-css="tve-u-95ca9d3b4aa9df" style=""><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input" data-css="tve-u-105ca9d3b4aa9e0">
+<input type="email" data-field="email" data-required="1" data-validation="email" name="email" placeholder="Email" data-placeholder="Email" class="" style="">
+</div></div></div><div class="tcb-flex-col" data-css="tve-u-115ca9d3b4aa9e1" style=""><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_clearfix tve_lg_checkbox tcb-lg-consent" style="display: none;"><div class="tve_lg_checkbox_wrapper"><input type="checkbox" name="user_consent" value="1" id="tcb-consent-tve-u-169f7560c78"><label for="tcb-consent-tve-u-169f7560c78"><span class="thrv-inline-text">Insert details about how the information is going to be processed</span></label></div><input type="hidden" name="consent_config" class="consent-config" value="YTozOntzOjc6ImVuYWJsZWQiO2I6MDtzOjg6InJlcXVpcmVkIjtiOjA7czoxMToiYWx3YXlzX3NlbmQiO2E6MDp7fX0="></div><div class="tve_lg_input_container tve_submit_container tve_lg_submit" data-css="tve-u-125ca9d3b4aa9e2" data-tcb_hover_state_parent="">
+<button type="submit" class="" style="">Join Now!​​​​</button>
+</div></div></div></div></div>
+</div>
+<input type="hidden" name="__tcb_lg_fc" id="__tcb_lg_fc" value="YToxOntzOjU6InNlbmR5IjtzOjIyOiJBMkY2STNnWWNYOHBrNHpmN3pTU3lnIjt9"><input id="_submit_option" type="hidden" name="_submit_option" value="message"><input id="_autofill" type="hidden" name="_autofill" value=""><input id="__tcb_lg_msg" type="hidden" name="__tcb_lg_msg" value="YToyOntzOjU6ImVycm9yIjtzOjY6IkVycm9yISI7czo3OiJzdWNjZXNzIjtzOjg6IlN1Y2Nlc3MhIjt9"></form>
+</div>
+</div></div>
+</div></div></div></div></div></div></div><div class="essb_links essb_displayed_bottom essb_share essb_template_round-retina essb_template_modern-light-retina essb_1787491084 print-no" id="essb_displayed_bottom_1787491084" data-essb-postid="15016" data-essb-position="bottom" data-essb-button-style="icon" data-essb-template="round-retina essb_template_modern-light-retina" data-essb-counter-pos="hidden" data-essb-url="https://geekflare.com/http-header-implementation/" data-essb-twitter-url="https://geekflare.com/http-header-implementation/" data-essb-instance="1787491084"><ul class="essb_links_list essb_force_hide_name essb_force_hide"><li class="essb_item essb_link_twitter nolightbox"> <a href="#" title="" onclick="if (!window.__cfRLUnblockHandlers) return false; essb.window('https://twitter.com/intent/tweet?text=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F&amp;url=https://geekflare.com/http-header-implementation/&amp;counturl=https://geekflare.com/http-header-implementation/','twitter','1787491084'); return false;" target="_blank" rel="nofollow" class="nolightbox"><span class="essb_icon essb_icon_twitter"></span><span class="essb_network_name essb_noname"></span></a></li><li class="essb_item essb_link_facebook nolightbox"> <a href="https://www.facebook.com/sharer/sharer.php?u=https://geekflare.com/http-header-implementation/&amp;t=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F" title="" onclick="if (!window.__cfRLUnblockHandlers) return false; essb.window('https://www.facebook.com/sharer/sharer.php?u=https://geekflare.com/http-header-implementation/&amp;t=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F','facebook','1787491084'); return false;" target="_blank" rel="nofollow" class="nolightbox"><span class="essb_icon essb_icon_facebook"></span><span class="essb_network_name essb_noname"></span></a></li><li class="essb_item essb_link_linkedin nolightbox"> <a href="https://www.linkedin.com/shareArticle?mini=true&amp;ro=true&amp;trk=EasySocialShareButtons&amp;title=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F&amp;url=https://geekflare.com/http-header-implementation/" title="" onclick="if (!window.__cfRLUnblockHandlers) return false; essb.window('https://www.linkedin.com/shareArticle?mini=true&amp;ro=true&amp;trk=EasySocialShareButtons&amp;title=How+to+Implement+Security+HTTP+Headers+to+Prevent+Vulnerabilities%3F&amp;url=https://geekflare.com/http-header-implementation/','linkedin','1787491084'); return false;" target="_blank" rel="nofollow" class="nolightbox"><span class="essb_icon essb_icon_linkedin"></span><span class="essb_network_name essb_noname"></span></a></li></ul></div><div class="essb_break_scroll"></div></div><p class="entry-meta"> </p><div class="related-posts"><h3 class="related-title">More Reading</h3><ul class="related-list"><li><a href="https://geekflare.com/virusdie-website-antivirus-firewall/" rel="bookmark" title="Permanent Link toClean Malware &amp; Protect Your Website from Security Threats with Virusdie">Clean Malware &amp; Protect Your Website from Security Threats with Virusdie</a></li><li><a href="https://geekflare.com/wordpress-waf/" rel="bookmark" title="Permanent Link to8 WordPress WAF to Prevent Security Threats">8 WordPress WAF to Prevent Security Threats</a></li><li><a href="https://geekflare.com/wordpress-x-frame-options-httponly-cookie/" rel="bookmark" title="Permanent Link toSecure WordPress with X-Frame-Options &amp; HTTPOnly Cookie">Secure WordPress with X-Frame-Options &amp; HTTPOnly Cookie</a></li><li><a href="https://geekflare.com/monitor-ssl-certificate-expiry/" rel="bookmark" title="Permanent Link to5 Tools to Monitor SSL Certificate Expiry from Cloud">5 Tools to Monitor SSL Certificate Expiry from Cloud</a></li><li><a href="https://geekflare.com/httponly-secure-cookie-apache/" rel="bookmark" title="Permanent Link toSecure cookie with HttpOnly and Secure flag in Apache">Secure cookie with HttpOnly and Secure flag in Apache</a></li></ul></div><footer class="entry-footer"></footer></article><h2 class="screen-reader-text">Reader Interactions</h2><div class="entry-comments" id="comments"><h3>Comments</h3><ol class="comment-list">
+<li class="comment even thread-even depth-1" id="comment-55577">
+<article>
+<header class="comment-header">
+<p class="comment-author">
+<img alt="" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/mystery.jpg" srcset="https://geekflare.com/wp-content/plugins/wp-user-avatars/wp-user-avatars/assets/images/mystery.jpg 2x" class="avatar avatar-35 photo" width="35" height="35"><span class="comment-author-name" itemprop="name">dhillibabu</span> <span class="says">says</span> </p>
+<p class="comment-meta"><time class="comment-time" datetime="2018-07-18T01:01:17+08:00"><a class="comment-time-link" href="https://geekflare.com/http-header-implementation/#comment-55577">July 18, 2018 at 1:01 am</a></time></p> </header>
+<div class="comment-content">
+<p>Hi </p>
+<p>after implementing this.. i am getting below error</p>
+<p>“to use this site, first enable your browsers java script support and then refresh this page” kindly advice.</p>
+</div>
+<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="#comment-55577" data-commentid="55577" data-postid="15016" data-belowelement="comment-55577" data-respondelement="respond" aria-label="Reply to dhillibabu">Reply</a></div>
+</article>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-46867">
+<article>
+<header class="comment-header">
+<p class="comment-author">
+<img alt="" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/mystery.jpg" srcset="https://geekflare.com/wp-content/plugins/wp-user-avatars/wp-user-avatars/assets/images/mystery.jpg 2x" class="avatar avatar-35 photo" width="35" height="35"><span class="comment-author-name" itemprop="name">Rex</span> <span class="says">says</span> </p>
+<p class="comment-meta"><time class="comment-time" datetime="2017-12-14T07:22:48+08:00"><a class="comment-time-link" href="https://geekflare.com/http-header-implementation/#comment-46867">December 14, 2017 at 7:22 am</a></time></p> </header>
+<div class="comment-content">
+<p>Awesome article. One typo here. Under “X-XSS-Protection”=&gt;”Apache HTTP Server”<br>
+Header set X-XSS-Protection “1; mode=block”<br>
+Should be<br>
+Header set X-XSS-Protection “1; mode=block”<br>
+The difference in double quotation marks will cause syntax error.</p>
+<p>Regards</p>
+</div>
+<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="#comment-46867" data-commentid="46867" data-postid="15016" data-belowelement="comment-46867" data-respondelement="respond" aria-label="Reply to Rex">Reply</a></div>
+</article>
+<ul class="children">
+<li class="comment byuser comment-author-chandan bypostauthor even depth-2" id="comment-46879">
+<article>
+<header class="comment-header">
+<p class="comment-author">
+<img alt="" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/Chandan-35x35.webp" srcset="https://geekflare.com/wp-content/uploads/2018/05/Chandan-70x70.png 2x" class="avatar avatar-35 photo" width="35" height="35"><span class="comment-author-name" itemprop="name"><a href="https://chandan.io/" class="comment-author-link" rel="external nofollow">Chandan Kumar</a></span> <span class="says">says</span> </p>
+<p class="comment-meta"><time class="comment-time" datetime="2017-12-14T13:41:52+08:00"><a class="comment-time-link" href="https://geekflare.com/http-header-implementation/#comment-46879">December 14, 2017 at 1:41 pm</a></time></p> </header>
+<div class="comment-content">
+<p>Thanks Rex</p>
+</div>
+<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="#comment-46879" data-commentid="46879" data-postid="15016" data-belowelement="comment-46879" data-respondelement="respond" aria-label="Reply to Chandan Kumar">Reply</a></div>
+</article>
+</li>
+</ul>
+</li>
+</ol></div> <div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://geekflare.com/http-header-implementation/#respond" style="display:none;">Cancel reply</a></small></h3> <form action="https://geekflare.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="Write Comment" aria-required="true"></textarea></p><div class="clearfix"><p class="comment-form-author one-half first"><label for="author"></label> <input id="author" name="author" placeholder="Name" type="text" size="30" maxlength="245"></p>
+<p class="comment-form-email one-half"><label for="email"></label> <input id="email" name="email" placeholder="Email Address" type="text" size="30" maxlength="100" aria-describedby="email-notes"></p></div>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="15016" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p id="aAre2xkX"><label for="checkboxaAre2xkX"><input type="checkbox" id="checkboxaAre2xkX" name="checkboxaAre2xkX" style="width: 25px;"><span>I am not a spammer</span></label><input type="hidden" name="cb_nombre"></p><input type="hidden" id="_sugar_sweet_email" name="sugar_sweet_email" value=""><input type="hidden" id="_comment_token" name="comment_token" value="1dd9c3ebd0a176aea064e2d7a72100d4">
+<script type="text/javascript">
+				
+				function cb_clickaAre2xkX() {
+					cb_nameaAre2xkX.value=cbaAre2xkX.name;
+				}
+				function checkaAre2xkX() {
+					if( cbaAre2xkX.checked != true ) {
+						alert( "Please check the box to confirm you're not a spammer" ); return false;
+					}
+					return true;
+				}
+				function reenableButtonaAre2xkX() {
+					nTimerCounteraAre2xkX++;
+					nRemaining = 5 - nTimerCounteraAre2xkX;
+					subbuttonaAre2xkX.value	= "Please wait "+nRemaining+" seconds before posting your comment";
+					if ( nTimerCounteraAre2xkX >= 5 ) {
+						subbuttonaAre2xkX.value = origButtonValueaAre2xkX;
+						subbuttonaAre2xkX.disabled = false;
+						clearInterval( sCountdownTimeraAre2xkX );
+					}
+				}
+				function redisableButtonaAre2xkX() {
+					subbuttonaAre2xkX.value		= "Please reload this page to post a comment";
+					subbuttonaAre2xkX.disabled	= true;
+				}
+				
+				var aAre2xkX				= document.getElementById('aAre2xkX');
+				var cbaAre2xkX				= document.createElement('input');
+				cbaAre2xkX.type				= 'checkbox';
+				cbaAre2xkX.id				= 'checkboxaAre2xkX';
+				cbaAre2xkX.name				= 'checkboxaAre2xkX';
+				cbaAre2xkX.style.width		= '25px';
+				cbaAre2xkX.onclick			= cb_clickaAre2xkX;
+			
+				var labelaAre2xkX			= document.createElement( 'label' );
+				var labelspanaAre2xkX		= document.createElement( 'span' );
+				labelaAre2xkX.htmlFor		= 'checkboxaAre2xkX';
+				labelspanaAre2xkX.innerHTML	= "I am not a spammer";
+
+				var cb_nameaAre2xkX			= document.createElement('input');
+				cb_nameaAre2xkX.type		= 'hidden';
+				cb_nameaAre2xkX.name		= 'cb_nombre';
+
+				aAre2xkX.appendChild( labelaAre2xkX );
+				labelaAre2xkX.appendChild( cbaAre2xkX );
+				labelaAre2xkX.appendChild( labelspanaAre2xkX );
+				aAre2xkX.appendChild( cb_nameaAre2xkX );
+
+				var frmaAre2xkX					= cbaAre2xkX.form;
+				frmaAre2xkX.onsubmit			= checkaAre2xkX;
+
+				
+					var subbuttonListaAre2xkX = frmaAre2xkX.querySelectorAll( 'input[type="submit"]' );
+					
+					if ( typeof( subbuttonListaAre2xkX ) != "undefined" ) {
+						subbuttonaAre2xkX = subbuttonListaAre2xkX[0];
+						if ( typeof( subbuttonaAre2xkX ) != "undefined" ) {
+						
+						
+							subbuttonaAre2xkX.disabled		= true;
+							origButtonValueaAre2xkX			= subbuttonaAre2xkX.value;
+							subbuttonaAre2xkX.value			= "Please wait 5 seconds before posting your comment";
+							nTimerCounteraAre2xkX			= 0;
+							sCountdownTimeraAre2xkX			= setInterval( reenableButtonaAre2xkX, 1000 );
+							sTimeoutTimeraAre2xkX			= setTimeout( redisableButtonaAre2xkX, 1799000 );
+						}
+					}
+					
+			</script>
+</form>
+</div>
+</main></div></div><div id="footer" class="footer-widgets"><h2 class="genesis-sidebar-title screen-reader-text">Footer</h2><div class="flexible-widgets widget-area widget-odd"><div class="wrap"><section id="text-36" class="widget widget_text"><div class="widget-wrap"> <div class="textwidget"><div class="tve-leads-shortcode tve-leads-triggered tve-tl-anim tl-anim-instant tve-leads-track-shortcode_23215"><div class="tl-style" id="tve_tcb2_blank" data-state="304" data-form-state=""><style type="text/css" class="tve_custom_style">@media (min-width: 300px){[data-css="tve-u-05c7193cd1cd3c"] { background-color: rgb(231, 237, 243) !important; }[data-css="tve-u-75c7193cd1cd46"] { margin-left: -15px; min-height: inherit; padding: 0px !important; }[data-css="tve-u-65c7193cd1cd45"] { float: none; width: 100%; max-width: 1025px; border: none; margin: 0px auto !important; }[data-css="tve-u-75c7193cd1cd46"] > .tcb-flex-col { padding-left: 15px; }[data-css="tve-u-75c7193cd1cd46"] > .tcb-flex-col > .tcb-col { min-height: 313px; }[data-css="tve-u-255c7193cd1cd5b"] { padding: 0px !important; margin-bottom: 20px !important; }#tve_editor [data-css="tve-u-265c7193cd1cd5c"] { font-family: inherit !important; font-size: 18px !important; color: rgb(94, 91, 98) !important; }[data-css="tve-u-85c7193cd1cd47"] { border: none; padding: 20px !important; background-color: rgb(255, 255, 255) !important; margin-bottom: 0px !important; }[data-css="tve-u-145c7193cd1cd4e"] { padding: 20px !important; background-color: rgb(255, 255, 255) !important; }[data-css="tve-u-215c7193cd1cd57"] { padding: 20px !important; background-color: rgb(255, 255, 255) !important; }[data-css="tve-u-125c7193cd1cd4c"] { padding: 0px !important; margin-bottom: 20px !important; }[data-css="tve-u-185c7193cd1cd53"] { padding: 0px !important; margin-bottom: 20px !important; }[data-css="tve-u-95c7193cd1cd48"] { width: 89px; float: none; margin: 0px auto !important; padding: 0px !important; }[data-css="tve-u-155c7193cd1cd4f"] { width: 89px; float: none; margin: 10px auto 0px !important; padding: 0px !important; }[data-css="tve-u-225c7193cd1cd58"] { width: 89px; float: none; margin: 0px auto !important; padding: 0px !important; }[data-css="tve-u-15c7193cd1cd3f"] { max-width: 1025px; float: none; width: 100%; margin-left: auto !important; margin-right: auto !important; padding: 0px !important; }#tve_editor [data-css="tve-u-35c7193cd1cd42"] { font-size: 42px !important; }#tve_editor [data-css="tve-u-55c7193cd1cd44"] { font-size: 22px !important; }[data-css="tve-u-25c7193cd1cd40"] { margin-bottom: 30px !important; }[data-css="tve-u-45c7193cd1cd43"] { margin-bottom: 30px !important; }#tve_editor [data-css="tve-u-135c7193cd1cd4d"] { color: rgb(94, 91, 98) !important; font-size: 18px !important; }[data-css="tve-u-105c7193cd1cd49"] { padding-bottom: 15px !important; padding-top: 15px !important; }[data-css="tve-u-165c7193cd1cd50"] { padding-bottom: 15px !important; padding-top: 15px !important; }[data-css="tve-u-235c7193cd1cd59"] { padding-bottom: 15px !important; margin-top: 0px !important; padding-top: 15px !important; }#tve_editor [data-css="tve-u-115c7193cd1cd4b"] { font-size: 25px !important; }#tve_editor [data-css="tve-u-175c7193cd1cd52"] { font-size: 25px !important; }#tve_editor [data-css="tve-u-245c7193cd1cd5a"] { font-size: 25px !important; }[data-css="tve-u-135c7193cd1cd4d"] { line-height: 1.5em !important; }#tve_editor [data-css="tve-u-195c7193cd1cd54"] { font-family: inherit !important; font-size: 18px !important; color: rgb(94, 91, 98) !important; }[data-css="tve-u-195c7193cd1cd54"] { line-height: 1.5em !important; }[data-css="tve-u-265c7193cd1cd5c"] { line-height: 1.5em !important; }[data-css="tve-u-285c7193cd1cd5e"] { margin-top: 50px !important; }}@media (max-width: 1023px){[data-css="tve-u-75c7193cd1cd46"] { padding-left: 0px !important; }[data-css="tve-u-15c7193cd1cd3f"] { float: none; width: 100%; max-width: 100%; padding-left: 0px !important; padding-right: 0px !important; margin: 0px auto !important; }[data-css="tve-u-65c7193cd1cd45"] { max-width: 100%; }}@media (max-width: 767px){[data-css="tve-u-85c7193cd1cd47"] { margin-bottom: 30px !important; padding-left: 10px !important; padding-right: 10px !important; }[data-css="tve-u-145c7193cd1cd4e"] { margin-bottom: 30px !important; padding-top: 0px !important; padding-left: 10px !important; padding-right: 10px !important; }[data-css="tve-u-215c7193cd1cd57"] { padding-left: 10px !important; padding-right: 10px !important; }[data-css="tve-u-65c7193cd1cd45"] { max-width: 100%; }[data-css="tve-u-15c7193cd1cd3f"] { max-width: 100%; }}</style><style type="text/css" class="tve_user_custom_style">.tve-leads-conversion-object .thrv_heading h1,.tve-leads-conversion-object .thrv_heading h2,.tve-leads-conversion-object .thrv_heading h3{margin:0;padding:0}.tve-leads-conversion-object .thrv_text_element p,.tve-leads-conversion-object .thrv_text_element h1,.tve-leads-conversion-object .thrv_text_element h2,.tve-leads-conversion-object .thrv_text_element h3{margin:0}</style><style type="text/css" class="tve_global_style"></style><div class="tve-leads-conversion-object" data-tl-type="shortcode_23215"><div class="tve_flt"><div id="tve_editor" class="tve_shortcode_editor"><div class="thrv-leads-form-box tve_no_drag tve_no_icons thrv_wrapper tve_editor_main_content thrv-leads-in-content tve_empty_dropzone" data-css="tve-u-05c7193cd1cd3c"><div class="thrv_wrapper thrv_contentbox_shortcode thrv-content-box" style="" data-css="tve-u-15c7193cd1cd3f" data-ct="stylebox-25582"><div class="tve-content-box-background"></div><div class="tve-cb"><div class="thrv_wrapper thrv_heading" data-tag="h3" data-css="tve-u-25c7193cd1cd40"><h3 data-css="tve-u-35c7193cd1cd42" style="text-align: center;">Power Your Business</h3></div><div class="thrv_wrapper thrv_text_element" data-css="tve-u-45c7193cd1cd43"><p data-css="tve-u-55c7193cd1cd44">Choosing
+ the right product and service is essential to run an online business. 
+Here are some of the tools have helped Geekflare to succeed where it is 
+today.</p></div><div class="thrv_wrapper thrv-columns" data-css="tve-u-65c7193cd1cd45" style=""><div class="tcb-flex-row v-2 tcb--cols--3" data-css="tve-u-75c7193cd1cd46"><div class="tcb-flex-col"><div class="tcb-col" data-css="tve-u-85c7193cd1cd47" style=""><div class="thrv_wrapper tve_image_caption" data-css="tve-u-95c7193cd1cd48"><span class="tve_image_frame" style="width: 100%;"><img class="tve_image wp-image-23479" alt="" title="netsparker-logo" data-id="23479" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/netsparker-logo.webp" style="width: 100%;" width="230" height="228"></span></div><div class="thrv_wrapper thrv_heading" data-tag="h3" data-css="tve-u-105c7193cd1cd49"><h3 data-css="tve-u-115c7193cd1cd4b" style="text-align: center;">Netsparker</h3></div><div class="thrv_wrapper thrv_text_element" data-css="tve-u-125c7193cd1cd4c" style=""><p data-css="tve-u-135c7193cd1cd4d">Netsparker
+ uses the Proof-Based Scanning™ to automatically verify the identified 
+vulnerabilities with a proof of exploit, thus making it possible to scan
+ thousands of web applications and generate actionable results within 
+just hours.</p></div><div class="thrv_wrapper thrv_custom_html_shortcode"><center><a href="https://www.netsparker.com/?utm_source=geekflare&amp;utm_medium=cpc&amp;utm_campaign=poweryourbusiness" target="_blank" class="button primary" rel="noopener noreferrer">Try Netsparker</a></center></div></div></div><div class="tcb-flex-col"><div class="tcb-col" data-css="tve-u-145c7193cd1cd4e" style=""><div class="thrv_wrapper tve_image_caption" data-css="tve-u-155c7193cd1cd4f"><span class="tve_image_frame" style="width: 100%;"><img class="tve_image wp-image-25850" alt="" title="kinsta-logo2" data-id="25850" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/kinsta-logo2.webp" style="width: 100%;" width="801" height="600"></span></div><div class="thrv_wrapper thrv_heading" data-tag="h3" data-css="tve-u-165c7193cd1cd50"><h3 data-css="tve-u-175c7193cd1cd52" style="text-align: center;">Kinsta</h3></div><div class="thrv_wrapper thrv_text_element" data-css="tve-u-185c7193cd1cd53" style=""><p data-css="tve-u-195c7193cd1cd54" style="text-align: left;">Probably
+ the best managed WordPress cloud platform to host small to enterprise 
+sites. Kinsta leverage Google's low latency network infrastructure to 
+deliver content faster. &nbsp;</p><p data-css="tve-u-195c7193cd1cd54" style="text-align: left;">They offer 30 days money-back guarantee.</p></div><div class="thrv_wrapper thrv_custom_html_shortcode" data-css="tve-u-205c7193cd1cd56"><center><a href="https://kinsta.com/?kaid=FYDUAKAIRLKF" target="_blank" class="button primary" rel="noopener noreferrer">Try Kinsta</a></center></div></div></div><div class="tcb-flex-col"><div class="tcb-col" data-css="tve-u-215c7193cd1cd57" style=""><div class="thrv_wrapper tve_image_caption" data-css="tve-u-225c7193cd1cd58"><span class="tve_image_frame" style="width: 100%;"><img class="tve_image wp-image-23263" alt="Genesis Framework" title="genesis-framework" data-id="23263" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/genesis-framework.webp" style="width: 100%;" width="600" height="600"></span></div><div class="thrv_wrapper thrv_heading" data-tag="h3" data-css="tve-u-235c7193cd1cd59"><h3 data-css="tve-u-245c7193cd1cd5a" style="text-align: center;">Genesis</h3></div><div class="thrv_wrapper thrv_text_element" data-css="tve-u-255c7193cd1cd5b" style=""><p data-css="tve-u-265c7193cd1cd5c" style="text-align: left;">Genesis
+ is a powerful WordPress framework to build a unique site. Powering more
+ than 600,000 websites and the most popular theme used in top 10k sites.</p><p data-css="tve-u-265c7193cd1cd5c" style="text-align: left;">Genesis is light-weight, and SEO-optimised theme.</p></div><div class="thrv_wrapper thrv_custom_html_shortcode" data-css="tve-u-275c7193cd1cd5d"><center><a href="https://shareasale.com/r.cfm?b=1320631&amp;u=1264148&amp;m=41388&amp;urllink=&amp;afftrack=" target="_blank" class="button primary" rel="noopener noreferrer">Get Genesis</a></center></div></div></div></div></div><div class="thrv_wrapper thrv_custom_html_shortcode" data-css="tve-u-285c7193cd1cd5e"><center><a href="https://geekflare.com/resources/" class="button">+ 10 More Awesome Resources</a></center></div></div></div></div></div></div></div></div></div>
+</div>
+</div></section>
+</div></div></div><footer class="site-footer"><div class="wrap"><nav class="nav-secondary" aria-label="Secondary"><div class="wrap"><ul id="menu-footer-right" class="menu genesis-nav-menu menu-secondary js-superfish sf-js-enabled sf-arrows" style="touch-action: pan-y;"><li id="menu-item-28206" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28206"><a href="https://geekflare.com/about/"><span>About</span></a></li>
+<li id="menu-item-22955" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22955"><a href="https://geekflare.com/contact/"><span>Contact</span></a></li>
+<li id="menu-item-22053" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22053"><a href="https://geekflare.com/post-sitemap.xml"><span>Sitemap</span></a></li>
+<li id="menu-item-22051" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22051"><a href="https://geekflare.com/terms/"><span>Terms</span></a></li>
+<li id="menu-item-22052" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-22052"><a href="https://geekflare.com/privacy/"><span>Privacy</span></a></li>
+<li id="menu-item-22055" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22055"><a href="https://geekflare.com/disclosure/"><span>Disclosure</span></a></li>
+<li id="menu-item-26099" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26099"><a href="https://geekflare.com/contribute/"><span>Write For Us</span></a></li>
+</ul></div></nav><p>©&nbsp;2019 · Geekflare · Founded by <a href="https://twitter.com/ConnectCK" target="_blank">Chandan Kumar</a></p></div></footer></div> <script type="text/javascript">
+		function atomicBlocksShare( url, title, w, h ){
+			var left = ( window.innerWidth / 2 )-( w / 2 );
+			var top  = ( window.innerHeight / 2 )-( h / 2 );
+			return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=600, height=600, top='+top+', left='+left);
+		}
+	</script>
+<script data-cfasync="false" async="" type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/813.js"></script> <script type="text/javascript">
+		// Hide Header on Scroll Down but Show when Scroll Up
+		var didScroll;
+		var lastScrollTop = 0;
+		var delta = 5;
+		var navbarHeight = '';
+
+		jQuery(window).load( function() {
+			navbarHeight = jQuery('header.site-header').outerHeight();
+			jQuery('body').css('paddingTop',navbarHeight);
+		});
+
+		jQuery(window).scroll(function(event){
+			didScroll = true;
+		});
+
+		setInterval(function() {
+			if (didScroll) {
+				geekflare_hasScrolled();
+				didScroll = false;
+			}
+		}, 250);
+
+		function geekflare_hasScrolled()
+		{
+			var st = jQuery(this).scrollTop();
+
+			// Make sure to scroll more than delta
+			if(Math.abs(lastScrollTop - st) <= delta)
+				return;
+
+			// If scrolled down and are past the navbar
+			// This is necessary so you never see what is "behind" the navbar.
+			if (st > lastScrollTop && st > navbarHeight){
+				// Scroll Down
+				jQuery('header.site-header').css('top',-navbarHeight).removeClass('shadow');
+			} else {
+				// Scroll Up
+				if(st + jQuery(window).height() < jQuery(document).height()) {
+					jQuery('header.site-header').css('top',0).addClass('shadow');
+				}
+			}
+
+			if (st < 15){
+				jQuery('header.site-header').css('top',0).removeClass('shadow');
+			}
+
+			lastScrollTop = st;
+		}
+	</script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/front.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tve_frontend_options = {"is_editor_page":"","page_events":[],"is_single":"1","ajaxurl":"https:\/\/geekflare.com\/wp-admin\/admin-ajax.php","social_fb_app_id":"1515102335420273","dash_url":"https:\/\/geekflare.com\/wp-content\/plugins\/thrive-visual-editor\/thrive-dashboard","translations":{"Copy":"Copy"},"post_id":"15016"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/frontend_002.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/frontend.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/dismiss.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/comment-reply.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/hoverIntent.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/superfish.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/superfish_002.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/skip-links.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/custom.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var genesis_responsive_menu = {"mainMenu":"Menu","menuIconClass":"dashicons-before dashicons-menu","subMenu":"Submenu","subMenuIconClass":"dashicons-before dashicons-arrow-down-alt2","menuClasses":{"combine":[".nav-primary",".nav-social"],"others":[]}};
+var genesis_responsive_menu = {"mainMenu":"Menu","menuIconClass":"dashicons-before dashicons-menu","subMenu":"Submenu","subMenuIconClass":"dashicons-before dashicons-arrow-down-alt2","menuClasses":{"combine":[".nav-primary",".nav-social"],"others":[]}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/responsive-menus.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tve_dash_front = {"ajaxurl":"https:\/\/geekflare.com\/wp-admin\/admin-ajax.php","force_ajax_send":"","is_crawler":""};
+var tve_dash_front = {"ajaxurl":"https:\/\/geekflare.com\/wp-admin\/admin-ajax.php","force_ajax_send":"","is_crawler":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/frontend_003.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/prism-js.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var megamenu = {"timeout":"300","interval":"100"};
+var megamenu = {"timeout":"300","interval":"100"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/maxmegamenu.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/public.js"></script>
+<script type="text/javascript" src="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/wp-embed.js"></script>
+<script type="text/javascript">var tcb_post_lists=JSON.parse('[]');</script><script type="text/javascript">/*<![CDATA[*/if ( !window.TL_Const ) {var TL_Const={"security":"e7fe5fce88","ajax_url":"https:\/\/geekflare.com\/wp-admin\/admin-ajax.php","forms":{"post_footer":{"_key":"325","trigger":"viewport","trigger_config":{},"form_type_id":22799,"main_group_id":22798,"active_test_id":""},"shortcode_23215":{"_key":"304","trigger":"page_load","trigger_config":{},"form_type_id":"23215","main_group_id":"23215","active_test_id":""}},"action_conversion":"tve_leads_ajax_conversion","action_impression":"tve_leads_ajax_impression","ajax_load":0,"main_group_id":22798,"display_options":{"allowed_post_types":[],"flag_url_match":false},"shortcode_ids":["23215"],"custom_post_data":[],"current_screen":{"screen_type":4,"screen_id":15016},"ignored_fields":["email","_captcha_size","_captcha_theme","_captcha_type","_submit_option","_use_captcha","g-recaptcha-response","__tcb_lg_fc","__tcb_lg_msg","_state","_form_type","_error_message_option","_back_url","_submit_option","url","_asset_group","_asset_option","mailchimp_optin"]};} else {ThriveGlobal.$j.extend(true, TL_Const, {"security":"e7fe5fce88","ajax_url":"https:\/\/geekflare.com\/wp-admin\/admin-ajax.php","forms":{"post_footer":{"_key":"325","trigger":"viewport","trigger_config":{},"form_type_id":22799,"main_group_id":22798,"active_test_id":""},"shortcode_23215":{"_key":"304","trigger":"page_load","trigger_config":{},"form_type_id":"23215","main_group_id":"23215","active_test_id":""}},"action_conversion":"tve_leads_ajax_conversion","action_impression":"tve_leads_ajax_impression","ajax_load":0,"main_group_id":22798,"display_options":{"allowed_post_types":[],"flag_url_match":false},"shortcode_ids":["23215"],"custom_post_data":[],"current_screen":{"screen_type":4,"screen_id":15016},"ignored_fields":["email","_captcha_size","_captcha_theme","_captcha_type","_submit_option","_use_captcha","g-recaptcha-response","__tcb_lg_fc","__tcb_lg_msg","_state","_form_type","_error_message_option","_back_url","_submit_option","url","_asset_group","_asset_option","mailchimp_optin"]})} /*]]> */</script><script type="text/javascript">var TL_Front = TL_Front || {}; TL_Front.impressions_data = TL_Front.impressions_data || {};TL_Front.impressions_data.post_footer = {"group_id":22798,"form_type_id":22799,"variation_key":"325","active_test_id":0,"output_js":true};TL_Front.impressions_data.shortcode_23215 = {"group_id":"23215","form_type_id":"23215","variation_key":"304","active_test_id":null,"output_js":true};</script><script type="text/javascript">
+	(function ($) {
+	var _DELTA = 80,
+	event_data = {"form_id":"tve-leads-track-post_footer-325","form_type":"post_footer"},
+	$window = $(window),
+	trigger_elements = function (elem) {
+	if (elem.offset().top + _DELTA < $window.height() + $window.scrollTop() && elem.offset().top + elem.outerHeight() > $window.scrollTop() + _DELTA) {
+	elem.addClass('tve-leads-viewport-triggered');
+	ThriveGlobal.$j(TL_Front).trigger('showform.thriveleads', event_data);
+	}
+	};
+	event_data.source = 'viewport';
+	$(document).ready(function () {
+	var _elem = $('.' + event_data.form_id);
+	if (!_elem.length) {
+	return;
+	}
+
+	$window.scroll(function() {
+	if (!_elem.hasClass('tve-leads-viewport-triggered')) {
+	trigger_elements(_elem);
+	}
+	});
+	trigger_elements(_elem);
+	});
+	})
+(ThriveGlobal.$j);
+</script><script type="text/javascript">
+	(function ($) {
+	$(function () {
+		var event_data = {"form_id":"tve-leads-track-shortcode_23215","form_type":"shortcode"};
+		event_data.source = 'page_load';
+		setTimeout(function () {
+			ThriveGlobal.$j(TL_Front).trigger('showform.thriveleads', event_data);
+			}, 200);
+		});
+	})
+(ThriveGlobal.$j);
+</script><link rel="stylesheet" id="essb-cct-style" href="How%20to%20Implement%20Security%20HTTP%20Headers%20to%20Prevent%20Vulnerabilities%3F_files/styles.css" type="text/css" media="all"><script type="text/javascript">
+				(function() {
+				var po = document.createElement('script'); po.type = 'text/javascript'; po.async=true;;
+				po.src = 'https://geekflare.com/wp-content/plugins/easy-social-share-buttons3/assets/js/essb-core.min.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		})();</script><script type="text/javascript"></script>
+<style>[href^="https://tracking.truthfinder.com/?a="],
+[href^="http://tracking.toroadvertising.com/"],
+[href^="http://tracking.deltamediallc.com/"],
+[href^="http://tracking.crazylead.com/"]
+{display:none !important;}</style><span class="algolia-autocomplete" style="position: absolute; z-index: 100; display: none; direction: ltr;"><span class="aa-dropdown-menu" style="display: block; left: 0px; right: auto;" role="listbox" id="algolia-autocomplete-listbox-0"><div class="aa-empty" style="display: none;"></div><div class="aa-dataset-1"></div>
+  <div class="autocomplete-footer">
+	<div class="autocomplete-footer-branding">
+	  <a href="#" class="algolia-powered-by-link" title="Algolia">
+		<svg width="130" viewBox="0 0 130 18" xmlns="http://www.w3.org/2000/svg">
+		  <title>Search by Algolia</title>
+		  <defs>
+			<linearGradient x1="-36.868%" y1="134.936%" x2="129.432%" y2="-27.7%" id="a">
+			  <stop stop-color="#00AEFF" offset="0%"></stop>
+			  <stop stop-color="#3369E7" offset="100%"></stop>
+			</linearGradient>
+		  </defs>
+		  <g fill="none" fill-rule="evenodd">
+			<path d="M59.399.022h13.299a2.372 2.372 0 0 1 2.377 2.364V15.62a2.372 2.372 0 0 1-2.377 2.364H59.399a2.372 2.372 0 0 1-2.377-2.364V2.381A2.368 2.368 0 0 1 59.399.022z" fill="url(#a)"></path>
+			<path d="M66.257 4.56c-2.815 0-5.1 2.272-5.1 5.078 0 2.806 2.284 5.072 5.1 5.072 2.815 0 5.1-2.272 5.1-5.078 0-2.806-2.279-5.072-5.1-5.072zm0 8.652c-1.983 0-3.593-1.602-3.593-3.574 0-1.972 1.61-3.574 3.593-3.574 1.983 0 3.593 1.602 3.593 3.574a3.582 3.582 0 0 1-3.593 3.574zm0-6.418v2.664c0 .076.082.131.153.093l2.377-1.226c.055-.027.071-.093.044-.147a2.96 2.96 0 0 0-2.465-1.487c-.055 0-.11.044-.11.104l.001-.001zm-3.33-1.956l-.312-.311a.783.783 0 0 0-1.106 0l-.372.37a.773.773 0 0 0 0 1.101l.307.305c.049.049.121.038.164-.011.181-.245.378-.479.597-.697.225-.223.455-.42.707-.599.055-.033.06-.109.016-.158h-.001zm5.001-.806v-.616a.781.781 0 0 0-.783-.779h-1.824a.78.78 0 0 0-.783.779v.632c0 .071.066.12.137.104a5.736 5.736 0 0 1 1.588-.223c.52 0 1.035.071 1.534.207a.106.106 0 0 0 .131-.104z" fill="#FFF"></path>
+			<path d="M102.162 13.762c0 1.455-.372 2.517-1.123 3.193-.75.676-1.895 1.013-3.44 1.013-.564 0-1.736-.109-2.673-.316l.345-1.689c.783.163 1.819.207 2.361.207.86 0 1.473-.174 1.84-.523.367-.349.548-.866.548-1.553v-.349a6.374 6.374 0 0 1-.838.316 4.151 4.151 0 0 1-1.194.158 4.515 4.515 0 0 1-1.616-.278 3.385 3.385 0 0 1-1.254-.817 3.744 3.744 0 0 1-.811-1.351c-.192-.539-.29-1.504-.29-2.212 0-.665.104-1.498.307-2.054a3.925 3.925 0 0 1 .904-1.433 4.124 4.124 0 0 1 1.441-.926 5.31 5.31 0 0 1 1.945-.365c.696 0 1.337.087 1.961.191a15.86 15.86 0 0 1 1.588.332v8.456h-.001zm-5.954-4.206c0 .893.197 1.885.592 2.299.394.414.904.621 1.528.621.34 0 .663-.049.964-.142a2.75 2.75 0 0 0 .734-.332v-5.29a8.531 8.531 0 0 0-1.413-.18c-.778-.022-1.369.294-1.786.801-.411.507-.619 1.395-.619 2.223zm16.12 0c0 .719-.104 1.264-.318 1.858a4.389 4.389 0 0 1-.904 1.52c-.389.42-.854.746-1.402.975-.548.229-1.391.36-1.813.36-.422-.005-1.26-.125-1.802-.36a4.088 4.088 0 0 1-1.397-.975 4.486 4.486 0 0 1-.909-1.52 5.037 5.037 0 0 1-.329-1.858c0-.719.099-1.411.318-1.999.219-.588.526-1.09.92-1.509.394-.42.865-.741 1.402-.97a4.547 4.547 0 0 1 1.786-.338 4.69 4.69 0 0 1 1.791.338c.548.229 1.019.55 1.402.97.389.42.69.921.909 1.509.23.588.345 1.28.345 1.999h.001zm-2.191.005c0-.921-.203-1.689-.597-2.223-.394-.539-.948-.806-1.654-.806-.707 0-1.26.267-1.654.806-.394.539-.586 1.302-.586 2.223 0 .932.197 1.558.592 2.098.394.545.948.812 1.654.812.707 0 1.26-.272 1.654-.812.394-.545.592-1.166.592-2.098h-.001zm6.962 4.707c-3.511.016-3.511-2.822-3.511-3.274L113.583.926l2.142-.338v10.003c0 .256 0 1.88 1.375 1.885v1.792h-.001zm3.774 0h-2.153V5.072l2.153-.338v9.534zm-1.079-10.542c.718 0 1.304-.578 1.304-1.291 0-.714-.581-1.291-1.304-1.291-.723 0-1.304.578-1.304 1.291 0 .714.586 1.291 1.304 1.291zm6.431 1.013c.707 0 1.304.087 1.786.262.482.174.871.42 1.156.73.285.311.488.735.608 1.182.126.447.186.937.186 1.476v5.481a25.24 25.24 0 0 1-1.495.251c-.668.098-1.419.147-2.251.147a6.829 6.829 0 0 1-1.517-.158 3.213 3.213 0 0 1-1.178-.507 2.455 2.455 0 0 1-.761-.904c-.181-.37-.274-.893-.274-1.438 0-.523.104-.855.307-1.215.208-.36.487-.654.838-.883a3.609 3.609 0 0 1 1.227-.49 7.073 7.073 0 0 1 2.202-.103c.263.027.537.076.833.147v-.349c0-.245-.027-.479-.088-.697a1.486 1.486 0 0 0-.307-.583c-.148-.169-.34-.3-.581-.392a2.536 2.536 0 0 0-.915-.163c-.493 0-.942.06-1.353.131-.411.071-.75.153-1.008.245l-.257-1.749c.268-.093.668-.185 1.183-.278a9.335 9.335 0 0 1 1.66-.142l-.001-.001zm.181 7.731c.657 0 1.145-.038 1.484-.104v-2.168a5.097 5.097 0 0 0-1.978-.104c-.241.033-.46.098-.652.191a1.167 1.167 0 0 0-.466.392c-.121.169-.175.267-.175.523 0 .501.175.79.493.981.323.196.75.289 1.293.289h.001zM84.109 4.794c.707 0 1.304.087 1.786.262.482.174.871.42 1.156.73.29.316.487.735.608 1.182.126.447.186.937.186 1.476v5.481a25.24 25.24 0 0 1-1.495.251c-.668.098-1.419.147-2.251.147a6.829 6.829 0 0 1-1.517-.158 3.213 3.213 0 0 1-1.178-.507 2.455 2.455 0 0 1-.761-.904c-.181-.37-.274-.893-.274-1.438 0-.523.104-.855.307-1.215.208-.36.487-.654.838-.883a3.609 3.609 0 0 1 1.227-.49 7.073 7.073 0 0 1 2.202-.103c.257.027.537.076.833.147v-.349c0-.245-.027-.479-.088-.697a1.486 1.486 0 0 0-.307-.583c-.148-.169-.34-.3-.581-.392a2.536 2.536 0 0 0-.915-.163c-.493 0-.942.06-1.353.131-.411.071-.75.153-1.008.245l-.257-1.749c.268-.093.668-.185 1.183-.278a8.89 8.89 0 0 1 1.66-.142l-.001-.001zm.186 7.736c.657 0 1.145-.038 1.484-.104v-2.168a5.097 5.097 0 0 0-1.978-.104c-.241.033-.46.098-.652.191a1.167 1.167 0 0 0-.466.392c-.121.169-.175.267-.175.523 0 .501.175.79.493.981.318.191.75.289 1.293.289h.001zm8.682 1.738c-3.511.016-3.511-2.822-3.511-3.274L89.461.926l2.142-.338v10.003c0 .256 0 1.88 1.375 1.885v1.792h-.001z" fill="#182359"></path>
+			<path d="M5.027 11.025c0 .698-.252 1.246-.757 1.644-.505.397-1.201.596-2.089.596-.888 0-1.615-.138-2.181-.414v-1.214c.358.168.739.301 1.141.397.403.097.778.145 1.125.145.508 0 .884-.097 1.125-.29a.945.945 0 0 0 .363-.779.978.978 0 0 0-.333-.747c-.222-.204-.68-.446-1.375-.725-.716-.29-1.221-.621-1.515-.994-.294-.372-.44-.82-.44-1.343 0-.655.233-1.171.698-1.547.466-.376 1.09-.564 1.875-.564.752 0 1.5.165 2.245.494l-.408 1.047c-.698-.294-1.321-.44-1.869-.44-.415 0-.73.09-.945.271a.89.89 0 0 0-.322.717c0 .204.043.379.129.524.086.145.227.282.424.411.197.129.551.299 1.063.51.577.24.999.464 1.268.671.269.208.466.442.591.704.125.261.188.569.188.924l-.001.002zm3.98 2.24c-.924 0-1.646-.269-2.167-.808-.521-.539-.782-1.281-.782-2.226 0-.97.242-1.733.725-2.288.483-.555 1.148-.833 1.993-.833.784 0 1.404.238 1.858.714.455.476.682 1.132.682 1.966v.682H7.357c.018.577.174 1.02.467 1.329.294.31.707.465 1.241.465.351 0 .678-.033.98-.099a5.1 5.1 0 0 0 .975-.33v1.026a3.865 3.865 0 0 1-.935.312 5.723 5.723 0 0 1-1.08.091l.002-.001zm-.231-5.199c-.401 0-.722.127-.964.381s-.386.625-.432 1.112h2.696c-.007-.491-.125-.862-.354-1.115-.229-.252-.544-.379-.945-.379l-.001.001zm7.692 5.092l-.252-.827h-.043c-.286.362-.575.608-.865.739-.29.131-.662.196-1.117.196-.584 0-1.039-.158-1.367-.473-.328-.315-.491-.761-.491-1.337 0-.612.227-1.074.682-1.386.455-.312 1.148-.482 2.079-.51l1.026-.032v-.317c0-.38-.089-.663-.266-.851-.177-.188-.452-.282-.824-.282-.304 0-.596.045-.876.134a6.68 6.68 0 0 0-.806.317l-.408-.902a4.414 4.414 0 0 1 1.058-.384 4.856 4.856 0 0 1 1.085-.132c.756 0 1.326.165 1.711.494.385.329.577.847.577 1.552v4.002h-.902l-.001-.001zm-1.88-.859c.458 0 .826-.128 1.104-.384.278-.256.416-.615.416-1.077v-.516l-.763.032c-.594.021-1.027.121-1.297.298s-.406.448-.406.814c0 .265.079.47.236.615.158.145.394.218.709.218h.001zm7.557-5.189c.254 0 .464.018.628.054l-.124 1.176a2.383 2.383 0 0 0-.559-.064c-.505 0-.914.165-1.227.494-.313.329-.47.757-.47 1.284v3.105h-1.262V7.218h.988l.167 1.047h.064c.197-.354.454-.636.771-.843a1.83 1.83 0 0 1 1.023-.312h.001zm4.125 6.155c-.899 0-1.582-.262-2.049-.787-.467-.525-.701-1.277-.701-2.259 0-.999.244-1.767.733-2.304.489-.537 1.195-.806 2.119-.806.627 0 1.191.116 1.692.349l-.381 1.015c-.534-.208-.974-.312-1.321-.312-1.028 0-1.542.682-1.542 2.046 0 .666.128 1.166.384 1.501.256.335.631.502 1.125.502a3.23 3.23 0 0 0 1.595-.419v1.101a2.53 2.53 0 0 1-.722.285 4.356 4.356 0 0 1-.932.086v.002zm8.277-.107h-1.268V9.506c0-.458-.092-.8-.277-1.026-.184-.226-.477-.338-.878-.338-.53 0-.919.158-1.168.475-.249.317-.373.848-.373 1.593v2.949h-1.262V4.801h1.262v2.122c0 .34-.021.704-.064 1.09h.081a1.76 1.76 0 0 1 .717-.666c.306-.158.663-.236 1.072-.236 1.439 0 2.159.725 2.159 2.175v3.873l-.001-.001zm7.649-6.048c.741 0 1.319.269 1.732.806.414.537.62 1.291.62 2.261 0 .974-.209 1.732-.628 2.275-.419.542-1.001.814-1.746.814-.752 0-1.336-.27-1.751-.811h-.086l-.231.704h-.945V4.801h1.262v1.987l-.021.655-.032.553h.054c.401-.591.992-.886 1.772-.886zm-.328 1.031c-.508 0-.875.149-1.098.448-.224.299-.339.799-.346 1.501v.086c0 .723.115 1.247.344 1.571.229.324.603.486 1.123.486.448 0 .787-.177 1.018-.532.231-.354.346-.867.346-1.536 0-1.35-.462-2.025-1.386-2.025l-.001.001zm3.244-.924h1.375l1.209 3.368c.183.48.304.931.365 1.354h.043c.032-.197.091-.436.177-.717.086-.281.541-1.616 1.364-4.004h1.364l-2.541 6.73c-.462 1.235-1.232 1.853-2.31 1.853-.279 0-.551-.03-.816-.091v-.999c.19.043.406.064.65.064.609 0 1.037-.353 1.284-1.058l.22-.559-2.385-5.941h.001z" fill="#1D3657"></path>
+		  </g>
+		</svg>
+	  </a>
+	</div>
+  </div>
+</span></span></body></html>
